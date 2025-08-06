@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectRoomMaterial extends Model
 {
+    public const CEIL = 1;
+    public const FLOOR = 2;
+    public const WALL = 3;
+
      protected $fillable = [
         'project_room_id', 
-        'material_category_id'
+        'material_category_id',
+        'type'
     ];
 
     public function projectroom()

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('project_room_id')->constrained()->onDelete('cascade');
             $table->foreignId('material_category_id')->constrained()->onDelete('cascade');
+            $table->integer('type');
             $table->timestamps();
         });
     }
