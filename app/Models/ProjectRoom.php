@@ -27,9 +27,13 @@ class ProjectRoom extends Model
     }
 
     public function projectrooms()
-{
-  return $this->hasMany(ProjectRoom::class);
-}
+   {
+       return $this->hasMany(ProjectRoom::class);
+    }
 
+  public function materials()
+    {
+        return $this->hasMany(ProjectRoomMaterial::class);
+    }
 
 }
