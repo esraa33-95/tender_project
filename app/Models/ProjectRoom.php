@@ -27,10 +27,15 @@ class ProjectRoom extends Model
     }
 
     public function projectrooms()
-   {
+    {
        return $this->hasMany(ProjectRoom::class);
     }
 
   
+    public function additions()
+    {
+        return $this->belongsToMany(Addition::class, 'addition_project_rooms')->withPivot('amount')
+                    ->withTimestamps();
+    }
 
 }
