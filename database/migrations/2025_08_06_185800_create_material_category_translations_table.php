@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('locale')->index();
 
-            $table->unique(['material_category_id','locale']);
+            $table->unique(['material_category_id', 'locale'], 'material_cat_unique');
             $table->timestamps();
         });
     }

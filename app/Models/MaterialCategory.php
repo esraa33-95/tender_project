@@ -5,17 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class MaterialCategory extends Model implements TranslatableContract
+class MaterialCategory extends Model implements TranslatableContract,HasMedia
 {
     use Translatable;
+    use InteractsWithMedia;
 
-public const CEIL = 1;
-public const FLOOR = 2;
-public const WALL = 3;
+    public const CEIL = 1;
+    public const WALL = 2;
+    public const FLOOR = 3;
 
 
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = [ 'name'];
 
     protected $fillable = [
         'room_property',
@@ -31,9 +34,10 @@ public const WALL = 3;
         return $this->hasMany(MaterialCategoryTranslation::class);
     }
 
-     public function materials()
-    {
-        return $this->hasMany(ProjectRoomMaterial::class);
-    }
+      public function roomzones()
+{
+    return $this->belongsToMany(RoomZone::class,'material_rooms')
+                                             ->withTimestamps();
+}
 
 }

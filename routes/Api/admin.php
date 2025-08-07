@@ -4,6 +4,7 @@
 use App\Http\Controllers\Api\Admin\ProjectController;
 use App\Http\Controllers\Api\Admin\RoomController;
 use App\Http\Controllers\Api\Admin\MaterialController;
+use App\Http\Controllers\Api\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 

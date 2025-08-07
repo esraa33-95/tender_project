@@ -28,4 +28,10 @@ class RoomZone extends Model implements TranslatableContract
         return $this->hasMany(ProjectRoom::class);
     }
     
+     public function materials()
+{
+    return $this->belongsToMany(MaterialCategory::class,'material_rooms')
+                                 ->withTimestamps();
+}
+
 }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('material_categories', function (Blueprint $table) {
             $table->id();
             $table->integer('room_property');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->float('price');
             $table->float('contractor_percentage');
-            $table->date('added_date');
+            $table->date('added_date')->nullable();
             $table->timestamps();
         });
     }
