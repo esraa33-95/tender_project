@@ -11,6 +11,7 @@ use App\Transformers\admin\MaterialCategoryTransform;
 use Illuminate\Http\Request;
 use League\Fractal\Serializer\ArraySerializer;
 
+
 class MaterialController extends Controller
 {
     use Response;
