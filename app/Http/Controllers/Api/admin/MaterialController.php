@@ -75,7 +75,7 @@ class MaterialController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store material successfully'), $material, 201);
+    return $this->responseApi(__('store material successfully'),$material, 201);
     }
 
     /**

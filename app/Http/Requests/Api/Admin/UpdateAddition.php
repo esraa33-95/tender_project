@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Api\admin;
 
-use App\Models\MaterialCategoryTranslation;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\AdditionTranslation;
 
-class UpdateMaterialCategory extends FormRequest
+class UpdateAddition extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,14 @@ class UpdateMaterialCategory extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->material_category; 
+         $id = $this->addition; 
 
     return [
         'name_en' => [ 'nullable','string','min:2','max:255','regex:/^[a-zA-Z ]*$/',
             function ($attribute, $value, $error) use ($id) {
-                $exists = MaterialCategoryTranslation::where('name', $value)
+                $exists = AdditionTranslation::where('name', $value)
                     ->where('locale', 'en')
-                    ->where('material_category_id', '!=', $id)
+                    ->where('addition_id', '!=', $id)
                     ->exists();
 
                 if ($exists) {
@@ -39,9 +39,9 @@ class UpdateMaterialCategory extends FormRequest
         ],
         'name_ar' => [ 'nullable','string','min:2','max:255', 'regex:/^[\p{Arabic} ]+$/u',
             function ($attribute, $value, $error) use ($id) {
-                $exists = MaterialCategoryTranslation::where('name', $value)
+                $exists = AdditionTranslation::where('name', $value)
                     ->where('locale', 'ar')
-                    ->where('material_category_id', '!=', $id)
+                    ->where('addition_id', '!=', $id)
                     ->exists();
 
                 if ($exists) {
@@ -49,12 +49,10 @@ class UpdateMaterialCategory extends FormRequest
                 }
             }
         ],
-        'room_property'=>['nullable','in:1,2,3'],
-        'image'=>['nullable','mimes:png,jpg,jpeg'],
-        'price'=>['nullable','numeric'],
-        'contractor_percentage' => ['nullable', 'numeric','between:0,100'],
-       'added_date'=>'nullable|date_format:Y-m-d',
+       
+        'room_zone_id' => 'nullable|exists:room_zones,id',
+        'addition_type_id' => 'nullable|exists:addition_types,id',
+        'added_date'=>'nullable|date_format:Y-m-d',
     ];
-    
     }
 }

@@ -8,6 +8,7 @@ use Astrotomic\Translatable\Translatable;
 
 class AdditionType extends Model implements TranslatableContract
 {
+  
     use Translatable;
     
      public $translatedAttributes = ['name'];

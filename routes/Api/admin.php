@@ -4,6 +4,8 @@
 use App\Http\Controllers\Api\Admin\ProjectController;
 use App\Http\Controllers\Api\Admin\RoomController;
 use App\Http\Controllers\Api\Admin\MaterialController;
+use App\Http\Controllers\Api\Admin\AdditionController;
+use App\Http\Controllers\Api\Admin\AdditionTypeController;
 use App\Http\Controllers\Api\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +54,32 @@ Route::middleware(['api_localization'])->group(function () {
 Route::middleware(['api_localization'])->group(function () {
 
      Route::prefix('materials')->controller(MaterialController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/', 'store');
+        Route::get('/{id}', 'show');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'delete');
+    });
+
+});
+
+
+//addition
+Route::middleware(['api_localization'])->group(function () {
+
+     Route::prefix('additions')->controller(AdditionController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/', 'store');
+        Route::get('/{id}', 'show');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'delete');
+    });
+
+});
+//addition types
+Route::middleware(['api_localization'])->group(function () {
+
+     Route::prefix('additiontypes')->controller(AdditionTypeController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
         Route::get('/{id}', 'show');

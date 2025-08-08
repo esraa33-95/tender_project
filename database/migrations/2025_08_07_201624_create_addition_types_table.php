@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->float('price');
             $table->float('contractor_percentage');
-            $table->float('added_date');
+            $table->date('added_date')->nullable();
             $table->timestamps();
         });
     }

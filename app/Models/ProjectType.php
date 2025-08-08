@@ -11,7 +11,7 @@ class ProjectType extends Model implements TranslatableContract
 {
     use Translatable;
     
-     public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['name'];
 
     protected $fillable = ['added_date'];
    
