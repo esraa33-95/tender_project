@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum','api_localization','IsAdmin'])->group(function
     });
 });
 
-//project
+//projecttype
 Route::middleware(['api_localization'])->group(function () {
 
      Route::prefix('projects')->controller(ProjectController::class)->group(function () {

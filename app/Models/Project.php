@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Project extends Model
+class Project extends Model implements HasMedia
 {
+  use InteractsWithMedia;
 
   public  const New = 1;
   public  const RUNNING = 2;
@@ -16,7 +19,6 @@ class Project extends Model
         'project_type_id',
         'name',
         'area',
-        'contractor_name',
         'description',
         'budget_from',
         'budget_to',
@@ -25,7 +27,6 @@ class Project extends Model
         'duration',
         'image',
         'start_date',
-        'end_date',
         'status'
     ];
 
@@ -36,7 +37,7 @@ public function users()
 
 public function projecttype()
 {
-  return $this->belongsTo(ProjectType::class);
+  return $this->belongsTo(ProjectType::class,'project_type_id');
 }
 
 public function projectrooms()

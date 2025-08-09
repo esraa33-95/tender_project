@@ -38,7 +38,7 @@ class MaterialCategoryTransform extends TransformerAbstract
               'name_ar' => $material->translate('ar')?->name,
               'price'=>$material->price,
               'contractor_percentage'=>$material->contractor_percentage ,
-              'image' => $material->getFirstMediaUrl('images') ?: asset('storage/default.png'),
+              'image' => $material->getFirstMediaUrl('images') ?: asset('storage/1.png'),
               'added_date'=>$material->added_date,
               'room_property'=>$material->room_property,
         ];

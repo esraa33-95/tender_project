@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\api_localization;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,6 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
                  ->prefix('api/admin')
                  ->group(base_path('routes/Api/admin.php'));
 
+                   Route::namespace('App\Http\Controllers\Api')
+                    ->prefix('api/client')
+                    ->group(base_path('routes/Api/client.php'));
   
                   Route::namespace('App\Http\Controllers')
                  ->prefix('api/auth')

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('project_type_id')->constrained('project_types')->onDelete('cascade');
             $table->string('name');
             $table->float('area');
-            $table->string('contractor_name');
             $table->text('description');
             $table->float('budget_from');
             $table->float('budget_to');
@@ -26,7 +25,6 @@ return new class extends Migration
             $table->integer('duration');
             $table->string('image');
             $table->date('start_date');
-            $table->date('end_date');
             $table->integer('status');
             $table->timestamps();
         });

@@ -36,7 +36,7 @@ class AdditionController extends Controller
 
     $additions = $query->skip($skip ?? 0)->take($take ?? $total)->get();
 
-    $additions =  fractal()->collection($addition)
+    $additions =  fractal()->collection($additions)
                   ->transformWith(new AdditionTransform())
                    ->serializeWith(new ArraySerializer())
                    ->toArray();

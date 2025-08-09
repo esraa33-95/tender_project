@@ -13,9 +13,9 @@ class MaterialCategory extends Model implements TranslatableContract,HasMedia
     use Translatable;
     use InteractsWithMedia;
 
-    public const CEIL = 1;
-    public const WALL = 2;
-    public const FLOOR = 3;
+    public const ROOM_CEIL = 1;
+    public const ROOM_WALL = 2;
+    public const ROOM_FLOOR = 3;
 
 
     public $translatedAttributes = [ 'name'];
