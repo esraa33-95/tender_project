@@ -40,6 +40,7 @@ class StoreAdditionType extends FormRequest
             }
         ],
         
+        'addition_id'=>['required','exists:additions,id'],
         'price'=>['required','numeric'],
         'contractor_percentage' => ['required', 'numeric','between:0,100'],
         'added_date'=>'required|date_format:Y-m-d',

@@ -36,6 +36,7 @@ class AdditionTypeTransform extends TransformerAbstract
               'id' =>$type->id,
               'name_en' => $type->translate('en')->name,
               'name_ar' => $type->translate('ar')->name,
+              'addition_id'=>$type->addition_id,
               'price'=>$type->price ?? 'n/a',
               'contractor_percentage'=>$type->contractor_percentage ?? 'n/a' ,
               'added_date'=>$type->added_date ?? 'n/a',

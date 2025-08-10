@@ -48,14 +48,16 @@ class AdditionTypeController extends Controller
      */
     public function store(StoreAdditionType $request)
     {
-        $added_date = $request->input('added_date');
+        $addition_id = $request->input('addition_id');
         $price = $request->input('price');
         $contractor_percentage = $request->input('contractor_percentage');
-       
+        $added_date = $request->input('added_date');
+
         $data = [
         'en' => ['name' => $request->name_en],
         'ar' => ['name' => $request->name_ar],
 
+        'addition_id'=>$addition_id,
         'price'=>$price,
         'contractor_percentage'=>$contractor_percentage,
         'added_date'=>$added_date,
@@ -92,6 +94,7 @@ class AdditionTypeController extends Controller
      */
     public function update(UpdateAdditionType $request, string $id)
     {
+        $addition_id = $request->input('addition_id');
         $price = $request->input('price');
         $contractor_percentage = $request->input('contractor_percentage');
         $added_date = $request->input('added_date');
@@ -99,7 +102,8 @@ class AdditionTypeController extends Controller
         $data = [
         'en' => ['name' => $request->name_en],
         'ar' => ['name' => $request->name_ar],
-
+        
+        'addition_id'=>$addition_id,
         'price'=>$price,
         'contractor_percentage'=>$contractor_percentage,
         'added_date'=>$added_date,
@@ -122,8 +126,7 @@ class AdditionTypeController extends Controller
      */
     public function delete(string $id)
     {
-         $additiontype = AdditionType::with('additions')
-                                       ->findOrFail($id);
+         $additiontype = AdditionType::findOrFail($id);
 
          if($additiontype)
         {

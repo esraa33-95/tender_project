@@ -38,7 +38,6 @@ class AdditionTransform extends TransformerAbstract
               'name_ar' => $addition->translate('ar')->name,
               'added_date'=>$addition->added_date ?? 'n/a',
               'room_zone_id' => $addition->room_zone_id,
-              'addition_type_id' => $addition->addition_type_id,
         ];
     }
 }

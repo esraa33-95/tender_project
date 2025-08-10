@@ -50,6 +50,7 @@ class UpdateAdditionType extends FormRequest
             }
         ],
        
+        'addition_id'=>['nullable','exists:additions,id'],
         'price'=>['nullable','numeric'],
         'contractor_percentage' => ['nullable', 'numeric','between:0,100'],
         'added_date'=>'nullable|date_format:Y-m-d',

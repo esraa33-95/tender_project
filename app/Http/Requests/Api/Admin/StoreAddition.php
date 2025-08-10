@@ -40,7 +40,6 @@ class StoreAddition extends FormRequest
             }
         ],
         'room_zone_id' => 'required|exists:room_zones,id',
-        'addition_type_id' => 'required|exists:addition_types,id',
         'added_date'=>'required|date_format:Y-m-d',
         
         ];

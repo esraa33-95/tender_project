@@ -52,7 +52,7 @@ class AdditionController extends Controller
     {
          $date = $request->input('added_date');
          $room_zone = $request->input('room_zone_id');
-         $addition_type = $request->input('addition_type_id');
+         
 
         $data = [
         'en' => ['name' => $request->name_en],
@@ -60,8 +60,7 @@ class AdditionController extends Controller
 
         'added_date'=>$date,
         'room_zone_id'=>$room_zone,
-        'addition_type_id'=>$addition_type,
-        
+           
     ];
 
     $addition = Addition::create($data);
@@ -97,7 +96,7 @@ class AdditionController extends Controller
     {
         $date = $request->input('added_date');
          $room_zone = $request->input('room_zone_id');
-         $addition_type = $request->input('addition_type_id');
+        
 
         $data = [
         'en' => ['name' => $request->name_en],
@@ -105,7 +104,6 @@ class AdditionController extends Controller
 
         'added_date'=>$date,
         'room_zone_id'=>$room_zone,
-        'addition_type_id'=>$addition_type,
         
     ];
          $addition = Addition::findOrFail($id);
@@ -126,7 +124,7 @@ class AdditionController extends Controller
      */
     public function delete(string $id)
     {
-         $addition = Addition::with(['roomzone','additiontype'])
+         $addition = Addition::with('additiontypes')
                                        ->findOrFail($id);
 
          if($addition)

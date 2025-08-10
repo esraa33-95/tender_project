@@ -51,7 +51,6 @@ class UpdateAddition extends FormRequest
         ],
        
         'room_zone_id' => 'nullable|exists:room_zones,id',
-        'addition_type_id' => 'nullable|exists:addition_types,id',
         'added_date'=>'nullable|date_format:Y-m-d',
     ];
     }
