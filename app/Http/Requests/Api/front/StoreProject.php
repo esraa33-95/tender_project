@@ -34,6 +34,7 @@ class StoreProject extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'start_date' => 'required|date_format:Y-m-d|after:today',
             'status' => 'required|integer|in:1,2,3',
+            'added_date'=>'nullable|date_format:y-m-d',
            
         ];
     }

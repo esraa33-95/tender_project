@@ -110,7 +110,7 @@ class RoomController extends Controller
                   ->serializeWith(new ArraySerializer())
                   ->toArray();
 
-    return $this->responseApi(__('messages.update_room'), $room);
+    return $this->responseApi(__('messages.update_room'),$room);
     }
 
     /**
@@ -127,6 +127,6 @@ class RoomController extends Controller
     }
         $room->delete();
         
-        return  $this->responseApi(__('messages.delete_projecttype'),204); 
+        return  $this->responseApi(__('messages.delete_roomzone'),204); 
     }
 }

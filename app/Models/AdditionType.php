@@ -13,16 +13,16 @@ class AdditionType extends Model implements TranslatableContract
     
      public $translatedAttributes = ['name'];
 
-    protected $fillable = ['price','contractor_percentage','added_date'];
+    protected $fillable = ['addition_id','price','contractor_percentage','added_date'];
 
     public function translates()
     {
         return $this->hasMany(AdditionTypeTranslation::class);
     }
 
-    public function additions()
+    public function addition()
     {
-      return $this->hasMany(Addition::class);
+      return $this->belongsTo(Addition::class);
     }
     
 }

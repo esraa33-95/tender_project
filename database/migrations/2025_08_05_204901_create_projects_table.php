@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('project_type_id')->constrained('project_types')->onDelete('cascade');
-            $table->string('name');
             $table->float('area');
+            $table->string('name');
             $table->text('description');
             $table->float('budget_from');
             $table->float('budget_to');

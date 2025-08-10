@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
 return new class extends Migration
 {
     /**
@@ -12,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('additions', function (Blueprint $table) {
+        Schema::create('addition_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_zone_id')->constrained()->onDelete('cascade');
-            $table->foreignId('addition_type_id')->constrained()->onDelete('cascade');
-            $table->date('added_date');
+            $table->foreignId('addition_id')->constrained()->onDelete('cascade');
+            $table->float('price');
+            $table->float('contractor_percentage');
+            $table->date('added_date')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('additions');
+        Schema::dropIfExists('addition_types');
     }
 };

@@ -34,9 +34,9 @@ class ProjectTransform extends TransformerAbstract
     {
         return [
             'id' => $project->id,
-            // 'user_name' => $project->user->name,   
-            // 'project_type_name' => $project->projectType,
-            'name' => $project->name,
+             'user_name' => $project->user->name,   
+             'project_type_name' => $project->projectType->name,
+            'name'=>$project->name,
             'area' => $project->area,
             'description' => $project->description,
             'budget_from' => $project->budget_from,
@@ -47,6 +47,7 @@ class ProjectTransform extends TransformerAbstract
             'start_date' => $project->start_date,
             'image'=>$project->getFirstMedia('images') ?: asset('storage/1.jpg'),
             'status' => $project->status,
+            'added_date'=>$project->added_date,
         ];
     }
 }

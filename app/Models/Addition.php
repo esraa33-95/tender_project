@@ -12,18 +12,18 @@ class Addition extends Model implements TranslatableContract
     
     public $translatedAttributes = ['name'];
 
-    protected $fillable = ['room_zone_id','addition_type_id','added_date'];
+    protected $fillable = ['room_zone_id','added_date'];
 
     public function translates()
     {
         return $this->hasMany(AdditionTranslation::class);
     }
     
-    public function additiontype()
+     public function additiontypes()
     {
-      return $this->belongsTo(AdditionType::class,'addition_type_id');
+      return $this->hasMany(AdditionType::class);
     }
-
+    
     public function roomzone()
     {
       return $this->belongsTo(RoomZone::class,'room_zone_id');
