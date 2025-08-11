@@ -23,7 +23,6 @@ class Project extends Model implements  HasMedia
         'project_type_id',
         'area',
         'name',
-        'description',
         'budget_from',
         'budget_to',
         'open_budget',

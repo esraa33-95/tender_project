@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\front;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMaterial extends FormRequest
+class StoreAddition extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class StoreMaterial extends FormRequest
     public function rules(): array
     {
         return [
-            'material_category_id'=>'required|integer|exists:material_categories,id',
-            'room_zone_id'=>'required|integer|exists:room_zones,id',
-
+            'project_room_id'=>'required|integer|exists:project_rooms,id',
+            'addition_id'=>'required|integer|exists:additions,id',
+            'amount'=>'required|integer',
         ];
     }
 }

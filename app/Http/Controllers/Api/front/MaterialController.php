@@ -14,13 +14,7 @@ use League\Fractal\Serializer\ArraySerializer;
 class MaterialController extends Controller
 {
     use Response;
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -39,32 +33,13 @@ class MaterialController extends Controller
 
     return $this->responseApi(__('store material successfully'), $materialroom, 201);
 
-
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
+
+    
 }

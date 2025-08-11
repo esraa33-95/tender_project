@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('project_type_id')->constrained('project_types')->onDelete('cascade');
             $table->float('area');
             $table->string('name');
-            $table->text('description');
             $table->float('budget_from');
             $table->float('budget_to');
             $table->boolean('open_budget')->default(false);

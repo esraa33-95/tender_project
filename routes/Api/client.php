@@ -3,7 +3,8 @@
 
 use App\Http\Controllers\Api\front\ProjectController;
 use App\Http\Controllers\Api\front\MaterialController;
-use App\Http\Controllers\Api\front\RoomZoneController;
+use App\Http\Controllers\Api\front\RoomController;
+use App\Http\Controllers\Api\front\AdditionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 
 //projects
 Route::middleware(['api_localization'])->group(function () {
-     Route::prefix('project')->controller(ProjectController::class)->group(function () {
+     Route::prefix('projects')->controller(ProjectController::class)->group(function () {
         Route::post('/', 'store');
     });
  });
 
  //projectrooms
 Route::middleware(['api_localization'])->group(function () {
-     Route::prefix('projectrooms')->controller(RoomZoneController::class)->group(function () {
+     Route::prefix('projectrooms')->controller(RoomController::class)->group(function () {
         Route::post('/', 'store');
         Route::put('/{id}', 'update');
         Route::delete('/{id}', 'delete');
@@ -30,6 +31,16 @@ Route::middleware(['api_localization'])->group(function () {
  //materials
  Route::middleware(['api_localization'])->group(function () {
      Route::prefix('materials')->controller(MaterialController::class)->group(function () {
+        Route::post('/{id}', 'store');
+      
+    });
+ });
+
+
+
+ //additions
+ Route::middleware(['api_localization'])->group(function () {
+     Route::prefix('additions')->controller(AdditionController::class)->group(function () {
         Route::post('/{id}', 'store');
       
     });

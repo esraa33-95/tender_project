@@ -7,10 +7,10 @@ use App\Http\Requests\Api\front\StoreRoomZone;
 use App\Http\Requests\Api\front\UpdateRoomZone;
 use App\Models\ProjectRoom;
 use App\Traits\Response;
-use App\Transformers\front\RoomZoneTransform;
+use App\Transformers\front\RoomTransform;
 use League\Fractal\Serializer\ArraySerializer;
 
-class RoomZoneController extends Controller
+class RoomController extends Controller
 {
     use Response;
     
@@ -29,7 +29,7 @@ class RoomZoneController extends Controller
                        ->toMediaCollection('images');
              }
 
-        $room = fractal($room, new RoomZoneTransform())
+        $room = fractal($room, new RoomTransform())
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 

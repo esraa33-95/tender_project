@@ -43,6 +43,9 @@ class MaterialTransform extends TransformerAbstract
        
         'name_ar' => $material->translate('ar')->name,
         'name_en' => $material->translate('en')->name,
+        'price'=>$material->price,
+        'room_property'=>$material->room_property,
+        'hint'=>$material->hint,
                   ];
            }) : null,
         ];

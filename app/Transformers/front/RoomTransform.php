@@ -5,7 +5,7 @@ namespace App\Transformers\front;
 use App\Models\ProjectRoom;
 use League\Fractal\TransformerAbstract;
 
-class RoomZoneTransform extends TransformerAbstract
+class RoomTransform extends TransformerAbstract
 {
     /**
      * List of resources to automatically include

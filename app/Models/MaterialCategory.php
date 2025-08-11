@@ -17,8 +17,14 @@ class MaterialCategory extends Model implements TranslatableContract,HasMedia
     public const ROOM_WALL = 2;
     public const ROOM_FLOOR = 3;
 
-
     public $translatedAttributes = [ 'name'];
+
+    protected $appends = ['hint'];
+
+    public function getHintAttribute()
+    {
+        return "price is :". number_format($this->price,2)."pounds";
+    }
 
     protected $fillable = [
         'room_property',
@@ -39,5 +45,7 @@ class MaterialCategory extends Model implements TranslatableContract,HasMedia
     return $this->belongsToMany(RoomZone::class,'material_rooms')
                                              ->withTimestamps();
 }
+
+
 
 }
