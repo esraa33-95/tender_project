@@ -9,6 +9,7 @@ use App\Models\ProjectRoom;
 use App\Transformers\front\AdditionTransform;
 use App\Http\Requests\Api\front\StoreAddition;
 use League\Fractal\Serializer\ArraySerializer;
+use App\Events\ProjectCostUpdated;
 
 
 class AdditionController extends Controller
@@ -26,9 +27,13 @@ class AdditionController extends Controller
                                  ['amount' => $data['amount']]
                                );
 
-        $addition = fractal($addition, new AdditionTransform())
-                    ->serializeWith(new ArraySerializer())
-                    ->toArray();
+        // $addition = fractal($addition, new AdditionTransform())
+        //             ->serializeWith(new ArraySerializer())
+        //             ->toArray();
+
+        $projectId = $projectroom->project_id;
+
+       event(new ProjectCostUpdated($projectId));
 
     return $this->responseApi(__('store addition successfully'), 201);
 

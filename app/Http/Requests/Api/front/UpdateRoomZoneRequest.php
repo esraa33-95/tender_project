@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\admin;
+namespace App\Http\Requests\Api\front;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\RoomZoneTranslation;
 
-class UpdateRoom extends FormRequest
+class UpdateRoomZoneRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +21,7 @@ class UpdateRoom extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->room_zone; 
+          $id = $this->room_zone; 
 
     return [
         'name_en' => [ 'nullable','string','min:2','max:255','regex:/^[a-zA-Z ]*$/',
@@ -52,5 +51,6 @@ class UpdateRoom extends FormRequest
        'added_date'=>'nullable|date_format:Y-m-d',
        'type'=>'nullable|in:1,2',
     ];
+    
     }
 }

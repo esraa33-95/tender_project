@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('image');
             $table->date('start_date');
             $table->integer('status');
+            $table->float('total_cost')->nullable();
+            $table->string('cancel_reason')->nullable();
             $table->timestamps();
         });
     }

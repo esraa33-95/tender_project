@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\front\AuthController;
+use App\Http\Controllers\Api\front\ListController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,4 +17,12 @@ Route::middleware('api_localization')->controller(AuthController::class)->group(
         Route::post('logout', 'logout');
     });
  
+});
+
+
+Route::middleware('api_localization')->controller(ListController::class)->middleware('auth:sanctum')->group(function () {   
+        Route::get('projecttypes', 'projecttypes');
+        Route::get('materials', 'materials');
+        Route::get('additiontypes', 'additiontypes');
+        
 });

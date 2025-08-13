@@ -12,11 +12,13 @@ class Project extends Model implements  HasMedia
 {
   use InteractsWithMedia;
 
-  public  const New = 1;
-  public  const RUNNING = 2;
-  public  const COMPLETED = 3;
+  public  const PENDING = 1;
+  public  const NEW = 2;
+  public  const CONFIRMED = 3;
+  public  const RUNNING = 4;
+  public  const COMPLETED = 5;
+  public  const CANCELLED = 6;
 
-   
    
     protected $fillable =[
         'user_id',
@@ -30,7 +32,8 @@ class Project extends Model implements  HasMedia
         'duration',
         'image',
         'start_date',
-        'status'
+        'status',
+        'cancel_reason'
     ];
 
 public function users()
@@ -48,5 +51,17 @@ public function projectrooms()
   return $this->hasMany(ProjectRoom::class);
 }
 
+public function stageCosts()
+{
+    return $this->hasMany(ProjectStageCost::class);
+}
 
+
+public function bids()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+
+    
 }

@@ -34,11 +34,10 @@ class ProjectTransform extends TransformerAbstract
     {
         return [
             'id' => $project->id,
-             'user_name' => $project->user->name,   
-             'project_type_name' => $project->projectType->name,
+            'user_id' => $project->user_id,   
+            'project_type_id' => $project->project_type_id,
             'name'=>$project->name,
             'area' => $project->area,
-            'description' => $project->description,
             'budget_from' => $project->budget_from,
             'budget_to' => $project->budget_to,
             'open_budget' => $project->open_budget,
@@ -47,7 +46,21 @@ class ProjectTransform extends TransformerAbstract
             'start_date' => $project->start_date,
             'image'=>$project->getFirstMedia('images') ?: asset('storage/1.jpg'),
             'status' => $project->status,
-            'added_date'=>$project->added_date,
+            'cancel_reason'=>$project->cancel_reason,
+
+            'bids' => $project->bids ? $project->bids->map(function ($bid) {
+               return [
+                      'id'  => $bid->id,
+                    'contractor_id' => $bid->contractor_id,
+                    'price'         => $bid->price,
+                    'is_accepted'   => $bid->is_accepted,
+        
+                  ];
+           }) : null,
+            
         ];
+
+
+        
     }
 }

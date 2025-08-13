@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\front\ProjectController;
 use App\Http\Controllers\Api\front\MaterialController;
 use App\Http\Controllers\Api\front\RoomController;
 use App\Http\Controllers\Api\front\AdditionController;
+use App\Http\Controllers\Api\front\BidController;
+use App\Http\Controllers\Api\front\RoomZoneController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['api_localization'])->group(function () {
      Route::prefix('projects')->controller(ProjectController::class)->group(function () {
         Route::post('/', 'store');
+        Route::get('/', 'index');
+        Route::get('/{id}', 'show');
+        Route::post('/submit/{id}', 'submit');
+        Route::post('/cancel/{id}', 'cancel');
+        Route::post('/complete/{id}', 'complete');
+        Route::get('/', 'pendingprojects');
+         Route::get('/{id}', 'showpending');
+
     });
  });
 
@@ -42,6 +52,26 @@ Route::middleware(['api_localization'])->group(function () {
  Route::middleware(['api_localization'])->group(function () {
      Route::prefix('additions')->controller(AdditionController::class)->group(function () {
         Route::post('/{id}', 'store');
+      
+    });
+ });
+
+
+ //roomzone
+ Route::middleware(['api_localization'])->group(function () {
+     Route::prefix('roomzones')->controller(RoomZoneController::class)->group(function () {
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'delete');
+      
+    });
+ });
+
+//bids
+Route::middleware(['api_localization'])->group(function () {
+     Route::prefix('bids')->controller(BidController::class)->group(function () {
+        Route::post('/', 'store');
+        Route::get('/{id}', 'bids');
+        Route::post('/{id}', 'changebids');
       
     });
  });
