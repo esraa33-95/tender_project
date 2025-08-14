@@ -40,10 +40,10 @@ class MaterialCategory extends Model implements TranslatableContract,HasMedia
         return $this->hasMany(MaterialCategoryTranslation::class);
     }
 
-      public function roomzones()
+   
+public function materials()
 {
-    return $this->belongsToMany(RoomZone::class,'material_rooms')
-                                             ->withTimestamps();
+    return $this->hasMany(RoomMaterial::class, 'material_category_id');
 }
 
 

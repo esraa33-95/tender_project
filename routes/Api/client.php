@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\front\RoomController;
 use App\Http\Controllers\Api\front\AdditionController;
 use App\Http\Controllers\Api\front\BidController;
 use App\Http\Controllers\Api\front\RoomZoneController;
+use App\Http\Controllers\Api\front\RatingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,13 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['api_localization'])->group(function () {
      Route::prefix('projects')->controller(ProjectController::class)->group(function () {
         Route::post('/', 'store');
+        Route::get('/{id}', 'bids');
+        Route::post('/contact/{id}', 'contact');
+        Route::post('/complete/{id}', 'complete');
+        Route::post('/cancel/{id}', 'cancel');
         Route::get('/', 'index');
         Route::get('/{id}', 'show');
         Route::post('/submit/{id}', 'submit');
-        Route::post('/cancel/{id}', 'cancel');
-        Route::post('/complete/{id}', 'complete');
-        Route::get('/', 'pendingprojects');
-         Route::get('/{id}', 'showpending');
+        Route::get('/pendingprojects', 'pendingprojects');
+        Route::get('/show/{id}', 'showpending');
 
     });
  });
@@ -69,9 +72,14 @@ Route::middleware(['api_localization'])->group(function () {
 //bids
 Route::middleware(['api_localization'])->group(function () {
      Route::prefix('bids')->controller(BidController::class)->group(function () {
-        Route::post('/', 'store');
-        Route::get('/{id}', 'bids');
-        Route::post('/{id}', 'changebids');
-      
+        Route::post('/{id}', 'changebids');   
+    });
+ });
+
+
+ //rate
+ Route::middleware(['api_localization'])->group(function () {
+     Route::prefix('rates')->controller(RatingController::class)->group(function () {
+        Route::post('/{id}', 'ratecontractor');   
     });
  });

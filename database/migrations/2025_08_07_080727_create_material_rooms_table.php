@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('material_rooms', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('material_category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('room_zone_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+           $table->id();
+           $table->foreignId('project_room_id')->constrained()->onDelete('cascade');
+           $table->enum('material_type', ['ceil', 'wall', 'floor']);
+           $table->foreignId('material_category_id')->constrained()->onDelete('cascade');
+           $table->timestamps();
         });
     }
 

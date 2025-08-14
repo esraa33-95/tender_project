@@ -2,10 +2,10 @@
 
 namespace App\Transformers\front;
 
-use App\Models\Bid;
 use League\Fractal\TransformerAbstract;
+use App\Models\User;
 
-class BidTransform extends TransformerAbstract
+class ContractorTransform extends TransformerAbstract
 {
     /**
      * List of resources to automatically include
@@ -30,13 +30,13 @@ class BidTransform extends TransformerAbstract
      *
      * @return array
      */
-    public function transform(Bid $bid):array
+    public function transform(User $contractor):array
     {
         return [
-            'project_id'=>$bid->project_id,
-            'contractor_id'=>$bid->contractor_id,
-            'price'=>$bid->price,
-            'status'=>$bid->status,
+            'id'    => $contractor->id,
+            'name'  => $contractor->name,
+            'email' => $contractor->email,
+            
         ];
     }
 }

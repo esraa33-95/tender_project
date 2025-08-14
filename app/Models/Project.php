@@ -22,6 +22,7 @@ class Project extends Model implements  HasMedia
    
     protected $fillable =[
         'user_id',
+        'contractor_id',
         'project_type_id',
         'area',
         'name',
@@ -38,7 +39,12 @@ class Project extends Model implements  HasMedia
 
 public function users()
 {
-  return $this->belongsTo(User::class);
+  return $this->belongsTo(User::class, 'user_id');
+}
+
+public function contractor()
+{
+  return $this->belongsTo(User::class, 'contractror_id');
 }
 
 public function projecttype()
@@ -62,6 +68,10 @@ public function bids()
         return $this->hasMany(Bid::class);
     }
 
+public function ratings()
+{
+    return $this->hasMany(Rating::class);
+}
 
     
 }

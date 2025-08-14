@@ -43,5 +43,11 @@ class ProjectRoom extends Model implements HasMedia
     }
 
     
+    public function materials()
+{
+    return $this->hasMany(RoomMaterial::class, 'project_room_id');
+}
+
+
 
 }

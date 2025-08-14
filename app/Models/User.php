@@ -65,5 +65,16 @@ class User extends Authenticatable
         return $this->hasMany(Bid::class);
     }
 
+
+    public function userRatings()
+{
+    return $this->hasMany(Rating::class, 'user_id');
+}
+
+
+public function contractorRatings()
+{
+    return $this->hasMany(Rating::class, 'contractor_id');
+}
    
 }

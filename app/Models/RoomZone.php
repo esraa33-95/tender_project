@@ -29,12 +29,6 @@ class RoomZone extends Model implements TranslatableContract
     }
 
 
-     public function materials()
-    {
-    return $this->belongsToMany(MaterialCategory::class,'material_rooms')
-                                 ->withTimestamps();
-    }
-
 
      public function additions()
     {

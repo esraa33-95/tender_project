@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\front;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBid extends FormRequest
+class RateContractor extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class StoreBid extends FormRequest
         return [
             'project_id'=>'required|integer|exists:projects,id',
             'contractor_id'=>'required|integer|exists:users,id',
-            'price'=>'required|numeric',
-            'status'=>'required|in:0',
+            'user_id'=>'required|integer|exists:users,id',
+            'rate'=>'required|integer|min:1|max:5',
         ];
     }
 }

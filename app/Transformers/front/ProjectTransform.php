@@ -34,7 +34,8 @@ class ProjectTransform extends TransformerAbstract
     {
         return [
             'id' => $project->id,
-            'user_id' => $project->user_id,   
+            'user_id' => $project->user_id,
+            'contractor_id' => $project->contractor_id, 
             'project_type_id' => $project->project_type_id,
             'name'=>$project->name,
             'area' => $project->area,
@@ -53,7 +54,7 @@ class ProjectTransform extends TransformerAbstract
                       'id'  => $bid->id,
                     'contractor_id' => $bid->contractor_id,
                     'price'         => $bid->price,
-                    'is_accepted'   => $bid->is_accepted,
+                    'status'   => $bid->status,
         
                   ];
            }) : null,

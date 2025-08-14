@@ -23,6 +23,7 @@ class StoreProject extends FormRequest
     {
         return [
              'user_id' => 'required|exists:users,id',
+             'contractor_id' => 'required|exists:users,id',
             'project_type_id' => 'required|exists:project_types,id',
             'name'=>'required|min:2|max:50',
             'area'=>'required|min:0.01',
@@ -33,7 +34,7 @@ class StoreProject extends FormRequest
             'duration'=>'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'start_date' => 'required|date_format:Y-m-d|after:today',
-            'status' => 'required|integer|in:1,2,3',
+            'status' => 'required|integer|in:1',
             'added_date'=>'nullable|date_format:y-m-d',
            
         ];
