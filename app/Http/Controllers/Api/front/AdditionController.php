@@ -27,10 +27,6 @@ class AdditionController extends Controller
                                  ['amount' => $data['amount']]
                                );
 
-        // $addition = fractal($addition, new AdditionTransform())
-        //             ->serializeWith(new ArraySerializer())
-        //             ->toArray();
-
         $projectId = $projectroom->project_id;
 
        event(new ProjectCostUpdated($projectId));
