@@ -6,6 +6,7 @@ use App\Events\ProjectCostUpdated;
 use App\Models\ProjectStageCost;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
+//use App\Notifications\ProjectCostExceeded;
 
 class CalculateProjectCost
 {
@@ -15,11 +16,11 @@ class CalculateProjectCost
         
         
         $materialsCost = DB::table('material_rooms')
-        ->join('material_categories', 'material_categories.id', '=', 'material_rooms.material_category_id')
-        ->join('project_rooms', 'project_rooms.id', '=', 'material_rooms.project_room_id')
-        ->where('project_rooms.project_id', $projectId)
-        ->select(DB::raw('SUM(material_categories.price + (material_categories.price * material_categories.contractor_percentage / 100)) as total'))
-        ->value('total') ?? 0;
+            ->join('material_categories', 'material_categories.id', '=', 'material_rooms.material_category_id')
+            ->join('project_rooms', 'project_rooms.id', '=', 'material_rooms.project_room_id')
+            ->where('project_rooms.project_id', $projectId)
+            ->select(DB::raw('SUM((material_categories.price + (material_categories.price * material_categories.contractor_percentage / 100)) * material_rooms.area) as total'))
+            ->value('total') ?? 0;
 
     ProjectStageCost::create([
         'project_id' => $projectId,
@@ -45,9 +46,14 @@ class CalculateProjectCost
         
         $totalCost = $materialsCost + $additionsCost;
 
-        Project::where('id', $projectId)->update([
+     $project = Project::where('id', $projectId)->update([
             'total_cost' => $totalCost,
             
         ]);
+
+    //      if ($totalCost > $project->budget_to) {
+      
+    //     $project->user->notify(new ProjectCostExceeded($project, $totalCost));
+    // }
     }
 }

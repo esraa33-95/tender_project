@@ -22,7 +22,8 @@ class AdditionController extends Controller
 
       $projectroom = ProjectRoom::findOrFail($id);
 
-    $addition =  $projectroom->additions()->attach( 
+
+      $addition =  $projectroom->additions()->attach( 
                                  $data['addition_id'], 
                                  ['amount' => $data['amount']]
                                );

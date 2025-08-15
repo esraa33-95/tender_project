@@ -49,16 +49,21 @@ class ProjectTransform extends TransformerAbstract
             'status' => $project->status,
             'cancel_reason'=>$project->cancel_reason,
 
+            
+
             'bids' => $project->bids ? $project->bids->map(function ($bid) {
                return [
                       'id'  => $bid->id,
                     'contractor_id' => $bid->contractor_id,
-                    'price'         => $bid->price,
+                    'contractor_name' => $bid->contractor->name,
+                    'contractor_email' => $bid->contractor->email,
+                    'price'  => $bid->price,
                     'status'   => $bid->status,
         
                   ];
            }) : null,
-            
+
+    
         ];
 
 

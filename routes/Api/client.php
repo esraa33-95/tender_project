@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\front\AdditionController;
 use App\Http\Controllers\Api\front\BidController;
 use App\Http\Controllers\Api\front\RoomZoneController;
 use App\Http\Controllers\Api\front\RatingController;
+use App\Http\Controllers\Api\front\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['api_localization'])->group(function () {
      Route::prefix('projects')->controller(ProjectController::class)->group(function () {
         Route::post('/', 'store');
+        Route::post('/submit/{id}', 'submit');
         Route::get('/{id}', 'bids');
-        Route::post('/contact/{id}', 'contact');
+        Route::get('/contact/{id}', 'contact');
         Route::post('/complete/{id}', 'complete');
         Route::post('/cancel/{id}', 'cancel');
         Route::get('/', 'index');
         Route::get('/{id}', 'show');
-        Route::post('/submit/{id}', 'submit');
         Route::get('/pendingprojects', 'pendingprojects');
         Route::get('/show/{id}', 'showpending');
 
@@ -83,3 +84,12 @@ Route::middleware(['api_localization'])->group(function () {
         Route::post('/{id}', 'ratecontractor');   
     });
  });
+
+
+
+//notifications
+ Route::middleware('api_localization')->group(function () {
+    Route::prefix('notifications')->controller(NotificationController::class)->group(function () {
+        Route::get('/', 'notifications');   
+    });
+});

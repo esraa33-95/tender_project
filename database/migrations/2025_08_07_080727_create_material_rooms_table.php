@@ -16,6 +16,8 @@ return new class extends Migration
            $table->foreignId('project_room_id')->constrained()->onDelete('cascade');
            $table->enum('material_type', ['ceil', 'wall', 'floor']);
            $table->foreignId('material_category_id')->constrained()->onDelete('cascade');
+           $table->float('area')->default(0);
+           $table->float('price')->default(0);
            $table->timestamps();
         });
     }

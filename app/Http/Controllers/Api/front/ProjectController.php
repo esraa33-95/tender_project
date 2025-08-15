@@ -23,7 +23,7 @@ class ProjectController extends Controller
     public function store(StoreProject $request )
     {
         $data = $request->validated();
-        // $data['status'] = Project::NEW;
+        // $data['status'] = Project::PENDING;
 
       $project = Project::create($data);
 
@@ -39,6 +39,29 @@ class ProjectController extends Controller
 
     return $this->responseApi(__('store project successfully'));
     }
+
+//submit project
+public function submit(string $id)
+{
+//$user = $auth()->user();
+
+$project =  Project::where('id',$id)
+                      ->where('status',Project::PENDING)
+                       //->where('user_id',$user->id())
+                       ->firstOrFail();
+
+ $project->update([
+    'status'=>Project::NEW,
+ ]);
+
+ $project = fractal()
+            ->item($project) 
+            ->transformWith(new ProjectTransform())
+            ->serializeWith(new ArraySerializer())
+            ->toArray();
+
+      return $this->responseApi(__('project submit successfully'),$project,200);
+} 
 
     //show all offers 
 public function bids(string $id)
@@ -58,31 +81,50 @@ public function bids(string $id)
 
 }
 
-
-
-
-
 //view contractor contacts
 public function contact(string $id)
 {
-   $contractor = Project::with('contractor')
-                           ->findOrFail($id);
-
+   $project = Project::with(['contractor', 'bids'])
+                       ->findOrFail($id);
 
     if ($project->status !== Project::CONFIRMED ) 
         {
         return $this->responseApi('no contractor assigned to this project');
        }                       
 
-    $contractor = fractal()
-                 ->item($contractor)
-                 ->transformWith(new ContractorTransform())
+    $project = fractal()
+                 ->item($project)
+                 ->transformWith(new ProjectTransform())
                  ->serializeWith(new ArraySerializer())
                  ->toArray();
 
-    return $this->responseApi('', $contractor, 200);         
-
+    return $this->responseApi('', $project, 200);         
 }
+
+//contractor changeproject to running
+public function changeproject(string $id)
+{
+   // $user = auth()->user();
+
+    $project = Project::where('id', $id)
+                     // ->where('user_id', auth()->id())
+                     ->where('status', Project::CONFIRMED)
+                      ->firstOrFail();
+
+    $project->update([
+           'status'=>Project::RUNNING,
+    ]);
+
+    $project = fractal()
+            ->item($project) 
+            ->transformWith(new ProjectTransform())
+            ->serializeWith(new ArraySerializer())
+            ->toArray();
+
+return $this->responseApi(__('running project now  successfully'));
+    
+}
+
 
 //complete project
 public function complete(string $id)
@@ -135,28 +177,7 @@ return $this->responseApi(__('cancel project successfully'), $project ,200);
 }
 
 
-//submit project
-public function submit(string $id)
-{
-//$user = $auth()->user();
-
-$project =  Project::where('id',$id)
-                      ->where('status',Project::CONFIRMED)
-                       //->where('user_id',$user->id())
-                       ->firstOrFail();
-
- $project->update([
-    'status'=>Project::RUNNING,
- ]);
-
- $project = fractal()
-            ->item($project) 
-            ->transformWith(new ProjectTransform())
-            ->serializeWith(new ArraySerializer())
-            ->toArray();
-
-      return $this->responseApi(__('project submit successfully'),$project,200);
-}  
+ 
 
 
 //filter project(current,history)

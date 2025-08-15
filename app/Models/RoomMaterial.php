@@ -11,7 +11,9 @@ class RoomMaterial extends Model
     protected $fillable = [
         'project_room_id',
         'material_type',
-        'material_category_id'
+        'material_category_id',
+        'area',
+        'price'
     ];
 
     public function material()

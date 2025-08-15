@@ -24,5 +24,6 @@ Route::middleware('api_localization')->controller(ListController::class)->middle
         Route::get('projecttypes', 'projecttypes');
         Route::get('materials', 'materials');
         Route::get('additiontypes', 'additiontypes');
+         Route::get('projects', 'projects');
         
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\front\StoreBid;
 use App\Models\Bid;
+use App\Models\Project;
 use App\Traits\Response;
 use App\Transformers\front\BidTransform;
 use League\Fractal\Serializer\ArraySerializer;

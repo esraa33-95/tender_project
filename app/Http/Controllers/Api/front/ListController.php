@@ -104,8 +104,25 @@ public function additiontypes(Request $request)
     }
 
 
-//list of pending projects
+//list of new projects
+public function projects(Request $request)
+{
+     $take = $request->input('take');
+     $skip = $request->input('skip');
+   
+    $query = Project::where('status', Project::NEW);
+ 
+    $total = $query->count();
 
+    $projects = $query->skip($skip ?? 0)->take($take ?? $total)->get();
+
+    $projects = fractal()->collection($projects)
+               ->transformWith(new PendingProjectTransform())
+               ->serializeWith(new ArraySerializer())
+               ->toArray();
+
+    return $this->responseApi('', $projects, 200, ['count' => $total]); 
+}
 
 
 
