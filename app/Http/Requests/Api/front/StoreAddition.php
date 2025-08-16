@@ -23,7 +23,7 @@ class StoreAddition extends FormRequest
     {
         return [
             'project_room_id'=>'required|integer|exists:project_rooms,id',
-            'addition_id'=>'required|integer|exists:additions,id',
+            'addition_type_id'=>'required|integer|exists:addition_types,id',
             'amount'=>'required|integer',
         ];
     }

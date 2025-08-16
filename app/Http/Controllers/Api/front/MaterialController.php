@@ -25,11 +25,24 @@ class MaterialController extends Controller
 
      $area = $projectRoom->length * $projectRoom->width;
 
+        $total_price = 0;
+
     foreach ($request->materials as $type => $materialId) 
         {
             $material = MaterialCategory::findOrFail($materialId);
 
-           $price_material = $material->price * $area * (1 + ($material->contractor_percentage / 100));
+             if ($type === 'floor' || $type === 'ceil') 
+                {
+            $area = $projectRoom->length * $projectRoom->width;
+
+        } elseif ($type === 'wall') 
+        {
+            $area = 2 * ($projectRoom->length + $projectRoom->width) * $projectRoom->height;
+        } 
+
+          $price = $material->price * $area;
+
+          $price_material = $price + ($price * $material->contractor_percentage / 100);
 
             RoomMaterial::create([
                 'project_room_id' => $Id,
@@ -37,10 +50,19 @@ class MaterialController extends Controller
                 'material_category_id' => $materialId,
                 'area'=>$area,
                 'price'=>$price_material,
+                
             ]);
-        }
+         
+           $total_price += $price_material;
+    }
 
-    return $this->responseApi(__('material store successfully'));
+    $projectRoom->update([
+        'total_price' => $total_price
+    ]);
+
+    return $this->responseApi(__('material store successfully'), [
+        'total_price' => $total_price
+    ]);
 }
 
 

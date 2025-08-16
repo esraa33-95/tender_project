@@ -29,31 +29,31 @@ class CalculateProjectCost
     ]);
 
    
-    $additionsCost = DB::table('addition_project_rooms')
-        ->join('additions', 'additions.id', '=', 'addition_project_rooms.addition_id')
-        ->join('addition_types', 'addition_types.addition_id', '=', 'additions.id')
-        ->join('project_rooms', 'project_rooms.id', '=', 'addition_project_rooms.project_room_id')
-        ->where('project_rooms.project_id', $projectId)
-        ->select(DB::raw('SUM((addition_types.price + (addition_types.price * addition_types.contractor_percentage / 100)) * addition_project_rooms.amount) as total'))
-        ->value('total') ?? 0;
+   $additionsCost = DB::table('addition_project_rooms')
+    ->join('addition_types', 'addition_types.id', '=', 'addition_project_rooms.addition_type_id')
+    ->join('additions', 'additions.id', '=', 'addition_types.addition_id')
+    ->join('project_rooms', 'project_rooms.id', '=', 'addition_project_rooms.project_room_id')
+    ->where('project_rooms.project_id', $projectId)
+    ->select(DB::raw('SUM((addition_types.price + (addition_types.price * addition_types.contractor_percentage / 100)) * addition_project_rooms.amount) as total'))
+    ->value('total') ?? 0;
 
-    ProjectStageCost::create([
-        'project_id' => $projectId,
-        'stage_name' => 'Additions',
-        'stage_cost' => $additionsCost
-    ]);
+ProjectStageCost::create([
+    'project_id' => $projectId,
+    'stage_name' => 'Additions',
+    'stage_cost' => $additionsCost
+]);
+
 
         
         $totalCost = $materialsCost + $additionsCost;
 
-     $project = Project::where('id', $projectId)->update([
-            'total_cost' => $totalCost,
-            
+       Project::where('id', $projectId)->update([
+            'total_cost' => $totalCost
         ]);
 
-    //      if ($totalCost > $project->budget_to) {
-      
-    //     $project->user->notify(new ProjectCostExceeded($project, $totalCost));
-    // }
-    }
+ }
+
+
+
+
 }

@@ -36,11 +36,13 @@ class ProjectRoom extends Model implements HasMedia
     }
 
   
-    public function additions()
-    {
-        return $this->belongsToMany(Addition::class, 'addition_project_rooms')->withPivot('amount')
-                    ->withTimestamps();
-    }
+    public function additionTypes()
+{
+    return $this->belongsToMany(AdditionType::class, 'addition_project_rooms')
+                ->withPivot('amount')
+                ->withTimestamps();
+}
+
 
     
     public function materials()

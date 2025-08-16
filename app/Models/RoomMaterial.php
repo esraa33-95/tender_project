@@ -13,7 +13,8 @@ class RoomMaterial extends Model
         'material_type',
         'material_category_id',
         'area',
-        'price'
+        'price',
+        'total_price'
     ];
 
     public function material()

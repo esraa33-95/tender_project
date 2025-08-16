@@ -18,6 +18,7 @@ return new class extends Migration
            $table->foreignId('material_category_id')->constrained()->onDelete('cascade');
            $table->float('area')->default(0);
            $table->float('price')->default(0);
+           $table->float('total_price')->nullable();
            $table->timestamps();
         });
     }
