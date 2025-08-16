@@ -32,7 +32,7 @@ class RatingController extends Controller
 
     if ($rating)
         {
-        return $this->responseApi('You are rated this contractor');
+        return $this->responseApi('messages.no_rate');
         }
 
        $rate = Rate::create($data);
@@ -41,7 +41,7 @@ class RatingController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store rate successfully'));
+    return $this->responseApi(__('messages.store_rate'));
 
     }
 }

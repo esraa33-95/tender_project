@@ -24,7 +24,7 @@ class RateContractor extends FormRequest
         return [
             'project_id'=>'required|integer|exists:projects,id',
             'contractor_id'=>'required|integer|exists:users,id',
-            'user_id'=>'required|integer|exists:users,id',
+            'user_id'=>'required|exists:users,id',
             'rate'=>'required|integer|min:1|max:5',
         ];
     }

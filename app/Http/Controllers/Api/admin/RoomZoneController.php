@@ -11,7 +11,7 @@ use App\Http\Requests\Api\Admin\StoreRoom;
 use App\Http\Requests\Api\admin\UpdateRoom;
 use League\Fractal\Serializer\ArraySerializer;
 
-class RoomController extends Controller
+class RoomZoneController extends Controller
 {
     use Response;
     /**
@@ -66,7 +66,7 @@ class RoomController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store room successfully'), $room, 201);
+    return $this->responseApi(__('messages.store_room'), $room, 201);
         
     }
 
@@ -123,10 +123,10 @@ class RoomController extends Controller
   
        if ($room) 
         {
-        return $this->responseApi(__('messages.cannot_delete_roomzone'), 409);
+        return $this->responseApi(__('messages.no_delete'), 409);
     }
         $room->delete();
         
-        return  $this->responseApi(__('messages.delete_roomzone'),204); 
+        return  $this->responseApi(__('messages.delete_room'),204); 
     }
 }

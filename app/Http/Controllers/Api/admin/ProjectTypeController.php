@@ -11,7 +11,7 @@ use App\Http\Requests\Api\Admin\StoreProjectType;
 use App\Http\Requests\Api\admin\UpdateProjectType;
 use League\Fractal\Serializer\ArraySerializer;
 
-class ProjectController extends Controller
+class ProjectTypeController extends Controller
 {
     use Response;
     /**
@@ -64,7 +64,7 @@ class ProjectController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store type successfully'), $type, 201);
+    return $this->responseApi(__('messages.store_type'), $type, 201);
     }
 
     /**
@@ -121,6 +121,6 @@ class ProjectController extends Controller
         }
         $type->delete();
         
-        return  $this->responseApi(__('messages.delete_projecttype'),204); 
+        return  $this->responseApi(__('messages.delete_type'),204); 
     }
 }

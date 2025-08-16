@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Api\front;
 use App\Http\Controllers\Controller;
 use App\Models\AdditionType;
 use App\Models\MaterialCategory;
+use App\Models\Project;
 use App\Models\ProjectType;
 use App\Traits\Response;
 use App\Transformers\front\AdditionTypeTransform;
 use App\Transformers\front\MaterialCategoryTransform;
+use App\Transformers\front\ProjectTransform;
 use App\Transformers\front\ProjectTypeTransform;
 use League\Fractal\Serializer\ArraySerializer;
 use Illuminate\Http\Request;
@@ -117,7 +119,7 @@ public function projects(Request $request)
     $projects = $query->skip($skip ?? 0)->take($take ?? $total)->get();
 
     $projects = fractal()->collection($projects)
-               ->transformWith(new PendingProjectTransform())
+               ->transformWith(new ProjectTransform())
                ->serializeWith(new ArraySerializer())
                ->toArray();
 

@@ -60,7 +60,7 @@ class MaterialController extends Controller
         'total_price' => $total_price
     ]);
 
-    return $this->responseApi(__('material store successfully'), [
+    return $this->responseApi(__('messages.store_material'), [
         'total_price' => $total_price
     ]);
 }

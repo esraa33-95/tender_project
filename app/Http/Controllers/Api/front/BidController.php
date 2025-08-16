@@ -25,10 +25,9 @@ class BidController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store bid successfully'));
+    return $this->responseApi(__('messages.store_bid'));
 
     }
-
 
 
 //accept bid or reject
@@ -57,7 +56,7 @@ public function changebids(Request $request, $bidId)
                        ->where('id', '!=', $bid->id)
                         ->update(['status' => Bid::REJECTED]);
 
-        return $this->responseApi('bid is supported by contractor,reject other bids', $otherbids, 200);
+        return $this->responseApi('messages.accept_bid', $otherbids, 200);
 
     } elseif($data['status'] == 2)  
     { 
@@ -65,7 +64,7 @@ public function changebids(Request $request, $bidId)
               'status' => Bid::REJECTED,
         ]);
 
-        return $this->responseApi('offer reject, see other bids', $bid, 200);
+        return $this->responseApi('messages.reject_bid', $bid, 200);
     }
 
 }

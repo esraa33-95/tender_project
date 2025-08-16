@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\front;
 
+use App\Models\RoomZoneTranslation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRoomZoneRequest extends FormRequest

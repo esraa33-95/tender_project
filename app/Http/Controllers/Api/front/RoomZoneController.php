@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Api\front\UpdateRoomZoneRequest;
 use App\Models\RoomZone;
 use App\Traits\Response;
@@ -35,7 +34,7 @@ class RoomZoneController extends Controller
                   ->serializeWith(new ArraySerializer())
                   ->toArray();
 
-    return $this->responseApi(__('messages.update_roomzone'),$roomzone);
+    return $this->responseApi(__('messages.update_room'),$roomzone);
     }
 
 
@@ -47,11 +46,11 @@ public function delete(string $id)
   
        if ($roomzone) 
         {
-        return $this->responseApi(__('messages.cannot_delete_roomzone'), 409);
+        return $this->responseApi(__('messages.no_delete'), 409);
     }
         $roomzone->delete();
         
-        return  $this->responseApi(__('messages.delete_roomzone'),204); 
+        return  $this->responseApi(__('messages.delete_room'),204); 
     }    
 
 

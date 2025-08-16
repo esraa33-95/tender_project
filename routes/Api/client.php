@@ -8,7 +8,6 @@ use App\Http\Controllers\Api\front\AdditionController;
 use App\Http\Controllers\Api\front\BidController;
 use App\Http\Controllers\Api\front\RoomZoneController;
 use App\Http\Controllers\Api\front\RatingController;
-use App\Http\Controllers\Api\front\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -87,9 +86,4 @@ Route::middleware(['api_localization'])->group(function () {
 
 
 
-//notifications
- Route::middleware('api_localization')->group(function () {
-    Route::prefix('notifications')->controller(NotificationController::class)->group(function () {
-        Route::get('/', 'notifications');   
-    });
-});
+

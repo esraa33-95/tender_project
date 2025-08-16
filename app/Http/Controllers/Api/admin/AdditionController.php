@@ -41,7 +41,7 @@ class AdditionController extends Controller
                    ->serializeWith(new ArraySerializer())
                    ->toArray();
 
-    return $this->responseApi('', $additions, 200, ['count' =>$total]);
+   return $this->responseApi('', $additions, 200, ['count' =>$total]);
 }
 
     
@@ -69,7 +69,7 @@ class AdditionController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store addition successfully'),$addition, 201);
+    return $this->responseApi(__('messages.store_addition'),$addition, 201);
     }
 
     /**
@@ -82,7 +82,7 @@ class AdditionController extends Controller
          $addition = fractal()
                          ->item($addition)
                          ->transformWith(new AdditionTransform())
-                         ->serializeWith(new ArraySerializer())
+                         ->serializeWith(new  ArraySerializer())
                          ->toArray();
 
         return  $this->responseApi('',$addition,200);

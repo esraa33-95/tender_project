@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\Response;
 use App\Models\ProjectRoom;
-use App\Transformers\front\AdditionTransform;
 use App\Http\Requests\Api\front\StoreAddition;
-use League\Fractal\Serializer\ArraySerializer;
 use App\Events\ProjectCostUpdated;
 use App\Models\Project;
 
@@ -34,7 +32,7 @@ class AdditionController extends Controller
 
       $project = Project::find($projectId);
 
-    return $this->responseApi(__('store addition successfully'));
+    return $this->responseApi(__('messages.store_addition'));
 
 //        $message = null;
 

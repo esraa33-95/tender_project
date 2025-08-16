@@ -9,7 +9,6 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Traits\Response;
 use App\Transformers\front\ProjectTransform;
-use App\Transformers\front\ContractorTransform;
 use App\Transformers\front\PendingProjectTransform;
 use League\Fractal\Serializer\ArraySerializer;
 
@@ -37,7 +36,7 @@ class ProjectController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store project successfully'));
+    return $this->responseApi(__('messages.store_project'));
     }
 
 //submit project
@@ -60,7 +59,7 @@ $project =  Project::where('id',$id)
             ->serializeWith(new ArraySerializer())
             ->toArray();
 
-      return $this->responseApi(__('project submit successfully'),$project,200);
+      return $this->responseApi(__('messages.submit_project'),$project,200);
 } 
 
     //show all offers 
@@ -87,9 +86,9 @@ public function contact(string $id)
    $project = Project::with(['contractor', 'bids'])
                        ->findOrFail($id);
 
-    if ($project->status !== Project::CONFIRMED ) 
+    if ($project->status !== Project::CONFIRMED || $project->contractor_id) 
         {
-        return $this->responseApi('no contractor assigned to this project');
+        return $this->responseApi('messages.no_contractor');
        }                       
 
     $project = fractal()
@@ -121,7 +120,7 @@ public function changeproject(string $id)
             ->serializeWith(new ArraySerializer())
             ->toArray();
 
-return $this->responseApi(__('running project now  successfully'));
+return $this->responseApi(__('messages.running_project'));
     
 }
 
@@ -146,7 +145,7 @@ public function complete(string $id)
             ->serializeWith(new ArraySerializer())
             ->toArray();
 
-return $this->responseApi(__('completed project successfully'));
+return $this->responseApi(__('messages.complete_project'));
     
 }
 
@@ -173,12 +172,8 @@ public function cancel(CancelProject $request,string $id)
             ->serializeWith(new ArraySerializer())
             ->toArray();
 
-return $this->responseApi(__('cancel project successfully'), $project ,200);
+return $this->responseApi(__('messages.cancel_project'), $project ,200);
 }
-
-
- 
-
 
 //filter project(current,history)
 public function index(Request $request)

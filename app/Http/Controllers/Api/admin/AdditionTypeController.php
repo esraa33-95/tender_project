@@ -9,6 +9,7 @@ use App\Models\AdditionType;
 use App\Traits\Response;
 use App\Http\Requests\Api\Admin\StoreAdditionType;
 use App\Http\Requests\Api\admin\UpdateAdditionType;
+use Illuminate\Support\Facades\DB;
 use League\Fractal\Serializer\ArraySerializer;
 
 class AdditionTypeController extends Controller
@@ -69,7 +70,7 @@ class AdditionTypeController extends Controller
                     ->serializeWith(new ArraySerializer())
                     ->toArray();
 
-    return $this->responseApi(__('store addition type successfully'),$additiontype, 201);
+    return $this->responseApi(__('messages.store_addition_type'),$additiontype, 201);
     }
 
     /**
@@ -117,7 +118,7 @@ class AdditionTypeController extends Controller
                   ->serializeWith(new ArraySerializer())
                   ->toArray();
 
-    return $this->responseApi(__('messages.update_addition'), $additiontype);
+    return $this->responseApi(__('messages.update_addition_type'), $additiontype);
 
     }
 
@@ -128,10 +129,14 @@ class AdditionTypeController extends Controller
     {
          $additiontype = AdditionType::findOrFail($id);
 
-         if($additiontype)
+        $rooms = DB::table('addition_project_rooms')
+                      ->where('addition_type_id', $id)
+                      ->exists();
+
+        if ($rooms) 
         {
-            return  $this->responseApi(__('messages.no_delete'),403); 
-        }
+        return $this->responseApi(__('messages.no_delete'), 403);
+       }
 
         $additiontype->delete();
         

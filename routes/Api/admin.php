@@ -1,12 +1,11 @@
 <?php
 
-
-use App\Http\Controllers\Api\Admin\ProjectController;
-use App\Http\Controllers\Api\Admin\RoomController;
 use App\Http\Controllers\Api\Admin\MaterialController;
 use App\Http\Controllers\Api\Admin\AdditionController;
 use App\Http\Controllers\Api\Admin\AdditionTypeController;
 use App\Http\Controllers\Api\Admin\AdminController;
+use App\Http\Controllers\Api\admin\ProjectTypeController;
+use App\Http\Controllers\Api\admin\RoomZoneController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,7 +26,7 @@ Route::middleware(['auth:sanctum','api_localization','IsAdmin'])->group(function
 //projecttype
 Route::middleware(['api_localization'])->group(function () {
 
-     Route::prefix('projects')->controller(ProjectController::class)->group(function () {
+     Route::prefix('projects')->controller(ProjectTypeController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
         Route::get('/{id}', 'show');
@@ -40,7 +39,7 @@ Route::middleware(['api_localization'])->group(function () {
 //rooms
 Route::middleware(['api_localization'])->group(function () {
 
-     Route::prefix('rooms')->controller(RoomController::class)->group(function () {
+     Route::prefix('rooms')->controller(RoomZoneController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
         Route::get('/{id}', 'show');
