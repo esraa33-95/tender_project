@@ -45,6 +45,7 @@ Route::middleware(['api_localization'])->group(function () {
  Route::middleware(['api_localization'])->group(function () {
      Route::prefix('materials')->controller(MaterialController::class)->group(function () {
         Route::post('/{id}', 'store');
+         Route::get('/{id}', 'show');
       
     });
  });

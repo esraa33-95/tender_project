@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\front\StoreRoomMaterial;
 use App\Models\RoomMaterial;
 use App\Models\ProjectRoom;
 use App\Models\MaterialCategory;
-use Illuminate\Http\Request;
 use App\Traits\Response;
-use League\Fractal\Serializer\ArraySerializer;
+
 
 class MaterialController extends Controller
 {
@@ -17,37 +17,41 @@ class MaterialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $Id)
+    public function store(StoreRoomMaterial $request, string $id)
 {
-    $projectRoom = ProjectRoom::findOrFail($Id);
+    $data = $request->validated();
 
-    $projectRoom->materials()->delete();
+    $projectRoom = ProjectRoom::findOrFail($id);
 
-     $area = $projectRoom->length * $projectRoom->width;
+    $total_price = 0;
 
-        $total_price = 0;
-
-    foreach ($request->materials as $type => $materialId) 
+    foreach ($request->materials as $type => $material_id) 
         {
-            $material = MaterialCategory::findOrFail($materialId);
+            $material = MaterialCategory::findOrFail($material_id);
 
-             if ($type === 'floor' || $type === 'ceil') 
+             if ($type === 'floor') 
                 {
             $area = $projectRoom->length * $projectRoom->width;
 
         } elseif ($type === 'wall') 
         {
             $area = 2 * ($projectRoom->length + $projectRoom->width) * $projectRoom->height;
-        } 
+
+        }elseif($type === 'ceil') 
+        {
+             $area = $projectRoom->length * $projectRoom->width; 
+        }
 
           $price = $material->price * $area;
 
-          $price_material = $price + ($price * $material->contractor_percentage / 100);
+          $contractor_percentage = $price * ($material->contractor_percentage /100) ;
+
+          $price_material = $price + $contractor_percentage;
 
             RoomMaterial::create([
-                'project_room_id' => $Id,
+                'project_room_id' => $id,
                 'material_type' => $type,
-                'material_category_id' => $materialId,
+                'material_category_id' => $material_id,
                 'area'=>$area,
                 'price'=>$price_material,
                 
@@ -55,20 +59,33 @@ class MaterialController extends Controller
          
            $total_price += $price_material;
     }
-
     $projectRoom->update([
         'total_price' => $total_price
     ]);
 
-    return $this->responseApi(__('messages.store_material'), [
+    return $this->responseApi(__('messages.store_material'),[
         'total_price' => $total_price
     ]);
 }
 
 
 
+//show hint for price of each material
+public function show(string $id)
+    {
+        $material = MaterialCategory::findOrFail($id);
 
-   
+        $contractor_percentage = $material->price * $material->contractor_percentage / 100;
+        
+        $hint_price = $contractor_percentage + $material->price;
+
+        return $this->responseApi(__('information about  material'), 
+        [
+            'name' => $material->name,
+            'hint_price' => $hint_price,
+        ]);
+    }
+
 
 
 }

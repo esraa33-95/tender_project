@@ -191,6 +191,36 @@ return [
             'min'      => 'سبب الإلغاء يجب ألا يقل عن 2 حروف',
             'max'      => 'سبب الإلغاء يجب ألا يزيد عن 50 حرف',
         ],
+         'materials' => [
+            'required' => 'حقل المواد مطلوب',
+            'array'    => 'حقل المواد يجب أن يكون مصفوفة',
+        ],
+        'materials.floor' => [
+            'required' => 'مطلوب اختيار مادة الأرضية',
+            'exists'   => 'مادة الأرضية غير صحيحة',
+        ],
+        'materials.ceil' => [
+            'required' => 'مطلوب اختيار مادة السقف',
+            'exists'   => 'مادة السقف  غير صحيحة',
+        ],
+        'materials.wall' => [
+            'required' => 'مطلوب اختيار مادة الحائط',
+            'exists'   => 'مادة الحائط  غير صحيحة',
+        ],
+
+        'additions' => [
+            'required' => 'حقل الإضافات مطلوب',
+            'array'    => 'حقل الإضافات يجب أن يكون مصفوفة',
+        ],
+        'additions.*.addition_type_id' => [
+            'required' => 'مطلوب اختيار نوع الإضافة',
+            'exists'   => 'نوع الإضافة غير صحيح',
+        ],
+        'additions.*.amount' => [
+            'required' => 'مطلوب إدخال الكمية',
+            'numeric'  => 'الكمية يجب أن تكون رقم',
+            'min'      => 'الكمية لا يمكن أن تقل عن 1',
+        ],
     ],
 
     'attributes' => [
@@ -227,6 +257,13 @@ return [
         'amount'   => 'الكمية',
         'rate'   => 'التقييم',
         'cancel_reason' => 'سبب الإلغاء',
+        'materials' => 'المواد',
+        'materials.floor' => 'مادة الأرضية',
+        'materials.ceil'  => 'مادة السقف',
+        'materials.wall'  => 'مادة الحائط',
+        'additions' => 'الإضافات',
+        'additions.*.addition_type_id' => 'نوع الإضافة',
+        'additions.*.amount' => 'الكمية',
      ],
 
 

@@ -3,49 +3,39 @@
 namespace App\Http\Controllers\Api\front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Traits\Response;
 use App\Models\ProjectRoom;
 use App\Http\Requests\Api\front\StoreAddition;
 use App\Events\ProjectCostUpdated;
-use App\Models\Project;
+
 
 class AdditionController extends Controller
 {
     use Response;
 
     public function store(StoreAddition $request , string $id)
-    {
-      $data = $request->validated();
+{
+    $data = $request->validated();
 
-      $projectroom = ProjectRoom::findOrFail($id);
+    $projectRoom = ProjectRoom::findOrFail($id);
 
+    foreach ($data['additions'] as $addition) 
+      {
+        $projectRoom->additionTypes()->attach(
+          
+            $addition['addition_type_id'], 
+            ['amount' => $addition['amount']]
+        );
+    }
 
-       $projectroom->additionTypes()->attach(
-                     $data['addition_type_id'], 
-                     ['amount' => $data['amount']]
-                  );
+    $projectId = $projectRoom->project_id;
 
-        $projectId = $projectroom->project_id;
-
-       event(new ProjectCostUpdated($projectId));
-
-      $project = Project::find($projectId);
+    event(new ProjectCostUpdated($projectId));
 
     return $this->responseApi(__('messages.store_addition'));
-
-//        $message = null;
-
-//     if ($project->total_cost > $project->budget_to) 
-//       {
-//         $message = "exceeded";
-//       }
- 
-//     return $this->responseApi(__('store addition successfully'),  
-//     ['total_cost' => $project->total_cost], 201, 
-//     ['message' => $message] 
-// );
+}
 
 
-     }
+
+
 }

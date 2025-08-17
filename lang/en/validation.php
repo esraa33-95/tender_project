@@ -178,188 +178,218 @@ return [
 
     'custom' => [
         'name_en' => [
-            'required' => 'The English name is required',
-            'string'   => 'The English name must string',
-            'min'      => 'The English name must be at least 2 ',
-            'max'      => 'The English name may not be greater than 255',
-            'regex'    => 'The English name may only contain letters and spaces',
-            'unique'   => 'This English name  exist',
+            'required' => ' English name is required',
+            'string'   => ' English name must string',
+            'min'      => ' English name must be at least 2 ',
+            'max'      => ' English name may not be greater than 255',
+            'regex'    => ' English name may  contain letters and spaces',
+            'unique'   => ' English name  exist',
         ],
 
          'name_ar' => [
-            'required' => 'The Arabic name is required',
-            'string'   => 'The Arabic name must  string',
-            'min'      => 'The Arabic name must be at least 2',
-            'max'      => 'The Arabic name may not be greater than 255',
-            'regex'    => 'The Arabic name may only contain Arabic letters and spaces',
-            'unique'   => 'This Arabic name  exist',
+            'required' => ' Arabic name is required',
+            'string'   => ' Arabic name must  string',
+            'min'      => ' Arabic name must be at least 2',
+            'max'      => ' Arabic name may not be greater than 255',
+            'regex'    => ' Arabic name may only contain Arabic letters and spaces',
+            'unique'   => ' Arabic name  exist',
          ],
          'added_date' => [
-            'required'    => 'The added date is required',
-            'date_format' => 'The added date must  format Y-M-D',
+            'required'    => ' added date is required',
+            'date_format' => ' added date must  format Y-M-D',
         ],
 
         'type' => [
             'required'    => 'type is required',
-            'in' => 'The type must  1 or 2',
+            'in' => ' type must  1 or 2',
         ],
         'room_property' => [
-            'required' => 'The room property field is required',
-            'in'       => 'The room property must be one of: 1, 2, or 3',
+            'required' => ' room property field is required',
+            'in'       => ' room property must be one of: 1, 2, or 3',
         ],
 
         'image' => [
             'required' => 'An image is required',
-            'mimes'    => 'The image must be a file of type: png, jpg, jpeg',
+            'mimes'    => ' image must be a file of type: png, jpg, jpeg',
         ],
 
         'price' => [
-            'required' => 'The price field is required',
-            'numeric'  => 'The price must number',
+            'required' => ' price field is required',
+            'numeric'  => ' price must number',
         ],
 
         'contractor_percentage' => [
-            'required' => 'The contractor percentage field is required',
-            'numeric'  => 'The contractor percentage must  number',
-            'between'  => 'The contractor percentage must be between 0 and 100',
+            'required' => ' contractor percentage field is required',
+            'numeric'  => ' contractor percentage must  number',
+            'between'  => ' contractor percentage must be between 0 and 100',
         ],
         'room_zone_id' => [
-            'required' => 'The room zone field is required',
-            'exists'   => 'The selected room zone is invalid',
+            'required' => ' room zone field is required',
+            'exists'   => ' selected room zone is invalid',
         ],
 
         'addition_id'=>[
-            'required' => 'The addition field is required',
-            'exists'   => 'The selected addition is invalid',
+            'required' => ' addition field is required',
+            'exists'   => ' selected addition is invalid',
         ],
         'user_id' => [
-            'required' => 'The user field is required',
-            'exists'   => 'The selected user is invalid',
+            'required' => ' user field is required',
+            'exists'   => ' selected user is invalid',
         ],
 
         'contractor_id' => [
-            'required' => 'The contractor field is required',
-            'exists'   => 'The selected contractor is invalid',
+            'required' => ' contractor field is required',
+            'exists'   => ' selected contractor is invalid',
         ],
 
         'project_type_id' => [
-            'required' => 'The project type field is required',
-            'exists'   => 'The selected project type is invalid',
+            'required' => ' project type field is required',
+            'exists'   => ' selected project type is invalid',
         ],
 
         'name' => [
-            'required' => 'The project name is required',
-            'min'      => 'The project name must be at least 2 ',
-            'max'      => 'The project name until 50',
+            'required' => ' project name is required',
+            'min'      => ' project name must be at least 2 ',
+            'max'      => ' project name until 50',
         ],
 
         'area' => [
-            'required' => 'The area is required.',
-            'min'      => 'The area must greater than 0 ',
+            'required' => ' area is required.',
+            'min'      => ' area must greater than 0 ',
         ],
 
         'budget_from' => [
-            'required' => 'The starting budget is required',
-            'numeric'  => 'The starting budget must number',
-            'min'      => 'The starting budget must  greater than 0',
+            'required' => ' starting budget is required',
+            'numeric'  => ' starting budget must number',
+            'min'      => ' starting budget must  greater than 0',
         ],
 
         'budget_to' => [
-            'required' => 'The ending budget is required.',
-            'numeric'  => 'The ending budget must  number.',
-            'gt'       => 'The ending budget must  greater than the budget_from',
+            'required' => ' ending budget is required.',
+            'numeric'  => ' ending budget must  number.',
+            'gt'       => ' ending budget must  greater than  budget_from',
         ],
 
         'open_budget' => [
-            'boolean' => 'The open budget field must  0 or 1',
+            'boolean' => ' open budget field must  0 or 1',
         ],
 
         'location' => [
-            'required' => 'The location is required',
-            'min'      => 'The location must be at least 2',
-            'max'      => 'The location must until 100',
+            'required' => ' location is required',
+            'min'      => ' location must be at least 2',
+            'max'      => ' location must until 100',
         ],
 
         'duration' => [
-            'required' => 'The project duration is required',
-            'integer'  => 'The project duration must be an integer',
+            'required' => ' project duration is required',
+            'integer'  => ' project duration must be an integer',
         ],
 
         'start_date' => [
-            'required'    => 'The project start date is required',
-            'date_format' => 'The project start date must be in the format Y-m-d',
-            'after'       => 'The project start date after today',
+            'required'    => ' project start date is required',
+            'date_format' => ' project start date must be in  format Y-m-d',
+            'after'       => ' project start date after today',
         ],
 
         'status' => [
-            'required' => 'The project status is required',
-            'integer'  => 'The project status must  integer',
-            'in'       => 'The project status must  1',
+            'required' => ' project status is required',
+            'integer'  => ' project status must  integer',
+            'in'       => ' project status must  1',
         ],
         'project_id' => [
-            'required' => 'The project is required',
-            'exists'   => 'The selected project is invalid',
+            'required' => ' project is required',
+            'exists'   => ' selected project is invalid',
         ],
 
         'length' => [
-            'required' => 'The length is required',
-            'numeric'  => 'The length must  number',
+            'required' => ' length is required',
+            'numeric'  => ' length must  number',
         ],
 
         'height' => [
-            'required' => 'The height is required',
-            'numeric'  => 'The height must  number',
+            'required' => ' height is required',
+            'numeric'  => ' height must  number',
         ],
 
         'width' => [
-            'required' => 'The width is required',
-            'numeric'  => 'The width must  number',
+            'required' => ' width is required',
+            'numeric'  => ' width must  number',
         ],
 
         'description' => [
-            'required' => 'The description is required',
-            'string'   => 'The description must  string',
-            'min'      => 'The description must at least 2',
-            'max'      => 'The description must until 500',
+            'required' => ' description is required',
+            'string'   => ' description must  string',
+            'min'      => ' description must at least 2',
+            'max'      => ' description must until 500',
         ],
         'material_category_id' => [
-            'required' => 'The material category is required',
-            'integer'  => 'The material category must  integer',
-            'exists'   => 'The selected material category is invalid',
+            'required' => ' material category is required',
+            'integer'  => ' material category must  integer',
+            'exists'   => ' material category is invalid',
         ],
         'project_room_id' => [
-            'required' => 'The project room is required',
-            'integer'  => 'The project room must  integer',
-            'exists'   => 'The selected project room is invalid',
+            'required' => ' project room is required',
+            'integer'  => ' project room must  integer',
+            'exists'   => ' project room is invalid',
         ],
 
         'addition_type_id' => [
-            'required' => 'The addition type is required',
-            'integer'  => 'The addition type must  integer',
-            'exists'   => 'The selected addition type is invalid',
+            'required' => ' addition type is required',
+            'integer'  => ' addition type must  integer',
+            'exists'   => ' addition type is invalid',
         ],
 
         'amount' => [
-            'required' => 'The amount is required',
-            'integer'  => 'The amount must  integer',
+            'required' => ' amount is required',
+            'integer'  => ' amount must  integer',
         ],
          'user_id' => [
-            'required' => 'The user is required',
-            'exists'   => 'The selected user is invalid',
+            'required' => ' user is required',
+            'exists'   => ' selected user is invalid',
         ],
 
         'rate' => [
-            'required' => 'The rate is required',
-            'integer'  => 'The rate must integer',
-            'min'      => 'The rate must be  least 1',
-            'max'      => 'The rate must not be greater than 5',
+            'required' => ' rate is required',
+            'integer'  => ' rate must integer',
+            'min'      => ' rate must be  least 1',
+            'max'      => ' rate must not be greater than 5',
         ],
 
         'cancel_reason' => [
-            'required' => 'The cancel reason is required',
-            'string'   => 'The cancel reason must  string',
-            'min'      => 'The cancel reason must at least 2 ',
-            'max'      => 'The cancel reason must  greater than 50 ',
+            'required' => ' cancel reason is required',
+            'string'   => ' cancel reason must  string',
+            'min'      => ' cancel reason must at least 2 ',
+            'max'      => ' cancel reason must  greater than 50 ',
+        ],
+         'materials' => [
+            'required' => ' materials is required',
+            'array'    => ' materials must array',
+        ],
+        'materials.floor' => [
+            'required' => ' floor material is required',
+            'exists'   => ' floor material is invalid',
+        ],
+        'materials.ceil' => [
+            'required' => 'ceil material is required',
+            'exists'   => 'ceil material is invalid',
+        ],
+        'materials.wall' => [
+            'required' => ' wall material is required',
+            'exists'   => ' wall material is invalid',
+        ],
+
+        'additions' => [
+            'required' => ' additions field is required',
+            'array'    => ' additions must be an array',
+        ],
+        'additions.*.addition_type_id' => [
+            'required' => ' addition type is required',
+            'exists'   => ' selected addition type is invalid',
+        ],
+        'additions.*.amount' => [
+            'required' => ' amount is required',
+            'numeric'  => ' amount must be a number',
+            'min'      => ' amount must be at least 1',
         ],
     ],
 
@@ -368,7 +398,7 @@ return [
     | Custom Validation Attributes
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used to swap our attribute placeholder
+    |  following language lines are used to swap our attribute placeholder
     | with something more reader friendly such as "E-Mail Address" instead
     | of "email". This simply helps us make our message more expressive.
     |
@@ -409,6 +439,13 @@ return [
          'user_id',
          'rate',
          'cancel_reason',
+         'materials',
+        'materials.floor',
+        'materials.ceil' ,
+        'materials.wall',
+         'additions',
+        'additions.*.addition_type_id' ,
+        'additions.*.amount', 
 
     ],
 
