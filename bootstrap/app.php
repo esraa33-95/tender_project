@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
                     ->prefix('api/client')
                     ->group(base_path('routes/Api/client.php'));
 
-                     Route::namespace('App\Http\Controllers\Api')
+                  Route::namespace('App\Http\Controllers\Api')
                     ->prefix('api/contractor')
                     ->group(base_path('routes/Api/contractor.php'));
   

@@ -7,11 +7,13 @@ use App\Models\AdditionType;
 use App\Models\MaterialCategory;
 use App\Models\Project;
 use App\Models\ProjectType;
+use App\Models\RoomZone;
 use App\Traits\Response;
 use App\Transformers\front\AdditionTypeTransform;
 use App\Transformers\front\MaterialCategoryTransform;
 use App\Transformers\front\ProjectTransform;
 use App\Transformers\front\ProjectTypeTransform;
+use App\Transformers\front\RoomZoneTransform;
 use League\Fractal\Serializer\ArraySerializer;
 use Illuminate\Http\Request;
 
@@ -47,7 +49,33 @@ public function projecttypes(Request $request)
     return $this->responseApi('',$projecttypes,200,['count' => $total]);
 
     }
+//list of room zones
+public function roomzones(Request $request)
+    {
+        $search = $request->input('search');
+        $take = $request->input('take'); 
+        $skip = $request->input('skip'); 
+        $locale = $request->query('lang', app()->getLocale());
 
+      $query = RoomZone::query();
+
+      if ($search) 
+      {
+       $query->whereTranslationLike('name', '%' . $search . '%', $locale);
+      }
+
+    $total = $query->count(); 
+
+     $roomzones = $query->skip($skip ?? 0)->take($take ?? $total)->get();
+
+     $roomzones =  fractal()->collection($roomzones)
+                  ->transformWith(new  RoomZoneTransform())
+                  ->serializeWith(new ArraySerializer())
+                   ->toArray();
+
+    return $this->responseApi('',$roomzones,200,['count' => $total]);
+
+    }
 
 //list of materials category
 public function materials(Request $request)
@@ -106,13 +134,13 @@ public function additiontypes(Request $request)
     }
 
 
-//list of new projects
+//list of projects
 public function projects(Request $request)
 {
      $take = $request->input('take');
      $skip = $request->input('skip');
    
-    $query = Project::where('status', Project::NEW);
+     $query = Project::whereIn('status', [Project::NEW, Project::PENDING]);
  
     $total = $query->count();
 
