@@ -7,7 +7,7 @@ use App\Traits\Response;
 use App\Models\ProjectRoom;
 use App\Http\Requests\Api\front\StoreAddition;
 use App\Events\ProjectCostUpdated;
-
+use App\Models\Project;
 
 class AdditionController extends Controller
 {
@@ -32,10 +32,15 @@ class AdditionController extends Controller
 
     event(new ProjectCostUpdated($projectId));
 
+     $project = Project::find($projectId);
+
+    if ($project->total_cost > $project->budget_to) 
+     {
+    return $this->responseApi( __('messages.budget'));
+      }
+
     return $this->responseApi(__('messages.store_addition'));
 }
-
-
 
 
 }

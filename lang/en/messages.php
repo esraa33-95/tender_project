@@ -55,7 +55,8 @@ return  [
 'no_rate'=>'You are rated this contractor',
 'store_rate'=>'store rate successfully',
 
-
+//budget
+'budget'=>'total cost of project is exceeded budget of your project',
 
 
 

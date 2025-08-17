@@ -6,6 +6,8 @@ use App\Events\ProjectCostUpdated;
 use App\Models\ProjectStageCost;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 //use App\Notifications\ProjectCostExceeded;
 
 class CalculateProjectCost
@@ -43,16 +45,17 @@ ProjectStageCost::create([
     'stage_cost' => $additionsCost
 ]);
 
+      
+ $totalCost = $materialsCost + $additionsCost;
 
-        
-        $totalCost = $materialsCost + $additionsCost;
-
-       Project::where('id', $projectId)->update([
+ Project::where('id', $projectId)->update([
             'total_cost' => $totalCost
         ]);
 
+
  }
 
+ 
 
 
 
