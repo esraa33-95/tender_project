@@ -140,7 +140,7 @@ public function projects(Request $request)
      $take = $request->input('take');
      $skip = $request->input('skip');
    
-     $query = Project::whereIn('status', [Project::NEW, Project::PENDING]);
+     $query = Project::whereIn('status', [Project::NEW]);
  
     $total = $query->count();
 

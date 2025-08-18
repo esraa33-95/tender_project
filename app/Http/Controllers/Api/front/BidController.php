@@ -31,16 +31,16 @@ class BidController extends Controller
 
 
 //accept bid or reject
-public function changebids(Request $request, $bidId)
+public function changebids(Request $request, $id)
 {
    $data = $request->validate([
         'status' => 'required|in:1,2',
     ]);
 
     $bid = Bid::with('project')
-               ->findOrFail($bidId);
+               ->findOrFail($id);
 
-    if ($data['status'] == 1) 
+    if ($data['status'] == Bid::ACCEPTED) 
         { 
           $bid->update([
               'status' =>Bid::ACCEPTED,
@@ -48,23 +48,23 @@ public function changebids(Request $request, $bidId)
         
         $bid->project()->update([
                 'contractor_id'=>$bid->contractor_id,
-                'status' => Project::CONFIRMED,
+                'status' => Project::RUNNING,
           ]);
 
 
-      $otherbids =  Bid::where('project_id', $bid->project_id)
+        Bid::where('project_id', $bid->project_id)
                        ->where('id', '!=', $bid->id)
                         ->update(['status' => Bid::REJECTED]);
 
-        return $this->responseApi('messages.accept_bid', $otherbids, 200);
+        return $this->responseApi(__('messages.accept_bid'), 200);
 
-    } elseif($data['status'] == 2)  
+    } elseif($data['status'] == Bid::REJECTED)  
     { 
         $bid->update([
               'status' => Bid::REJECTED,
         ]);
 
-        return $this->responseApi('messages.reject_bid', $bid, 200);
+        return $this->responseApi(__('messages.reject_bid'), $bid, 200);
     }
 
 }

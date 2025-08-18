@@ -22,7 +22,7 @@ class ProjectController extends Controller
     public function store(StoreProject $request )
     {
         $data = $request->validated();
-        // $data['status'] = Project::PENDING;
+        // $data['status'] = Project::NEW;
 
       $project = Project::create($data);
 
@@ -45,13 +45,12 @@ public function submit(string $id)
 //$user = $auth()->user();
 
 $project =  Project::where('id',$id)
-                      ->where('status',Project::PENDING)
+                      ->where('status', Project::NEW )
                        //->where('user_id',$user->id())
                        ->firstOrFail();
-
- $project->update([
-    'status'=>Project::NEW,
- ]);
+$project->update([
+      'status'=>Project::CONFIRMED,
+]);
 
  $project = fractal()
             ->item($project) 
@@ -86,9 +85,9 @@ public function contact(string $id)
    $project = Project::with(['contractor', 'bids'])
                        ->findOrFail($id);
 
-    if ($project->status !== Project::CONFIRMED || $project->contractor_id) 
+    if ($project->status !== Project::RUNNING || !$project->contractor_id) 
         {
-        return $this->responseApi('messages.no_contractor');
+        return $this->responseApi(__('messages.no_contractor'));
        }                       
 
     $project = fractal()
@@ -100,29 +99,6 @@ public function contact(string $id)
     return $this->responseApi('', $project, 200);         
 }
 
-//contractor changeproject to running
-public function changeproject(string $id)
-{
-   // $user = auth()->user();
-
-    $project = Project::where('id', $id)
-                     // ->where('user_id', auth()->id())
-                     ->where('status', Project::CONFIRMED)
-                      ->firstOrFail();
-
-    $project->update([
-           'status'=>Project::RUNNING,
-    ]);
-
-    $project = fractal()
-            ->item($project) 
-            ->transformWith(new ProjectTransform())
-            ->serializeWith(new ArraySerializer())
-            ->toArray();
-
-return $this->responseApi(__('messages.running_project'));
-    
-}
 
 
 //complete project
@@ -157,7 +133,7 @@ public function cancel(CancelProject $request,string $id)
   $data = $request->validated();
 
   $project =  Project::where('id',$id)
-                    ->whereIn('status', [Project::NEW, Project::CONFIRMED, Project::RUNNING])
+                    ->whereIn('status', [Project::NEW,Project::CONFIRMED,Project::RUNNING])
                     // ->where('user_id',$user->id())
                       ->firstOrFail();
 
@@ -186,7 +162,7 @@ public function index(Request $request)
  
     if ($search === 'current') 
         {
-        $query->whereIn('status', [project::NEW, Project::CONFIRMED,Project::RUNNING]);
+        $query->whereIn('status', [project::NEW, Project::RUNNING]);
         } 
     elseif ($search === 'history') 
         {
@@ -231,7 +207,7 @@ public function showpending(string $id)
   //  $user = $auth()->user();
 
    $pendingproject = Project::where('id',$id)
-                      ->where('status',Project::PENDING)
+                      ->where('status',Project::NEW)
                       // ->where('user_id',$user->id())
                        ->firstOrFail();
    
@@ -250,7 +226,7 @@ public function pendingprojects(Request $request)
      $take = $request->input('take');
      $skip = $request->input('skip');
    
-    $query = Project::where('status', Project::PENDING);
+    $query = Project::where('status', Project::NEW);
  
     $total = $query->count();
 

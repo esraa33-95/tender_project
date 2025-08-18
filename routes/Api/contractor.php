@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\front\BidController;
-use App\Http\Controllers\Api\front\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,10 +13,3 @@ Route::middleware(['api_localization'])->group(function () {
     });
  });
 
-//contractor
- Route::middleware(['api_localization'])->group(function () {
-     Route::prefix('projects')->controller(ProjectController::class)->group(function () {
-        Route::post('/changeproject/{id}', 'changeproject');
-       
-    });
- });

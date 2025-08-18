@@ -19,7 +19,7 @@ Route::middleware(['api_localization'])->group(function () {
      Route::prefix('projects')->controller(ProjectController::class)->group(function () {
         Route::post('/', 'store');
         Route::post('/submit/{id}', 'submit');
-        Route::get('/{id}', 'bids');
+        Route::get('/bids/{id}', 'bids');
         Route::get('/contact/{id}', 'contact');
         Route::post('/complete/{id}', 'complete');
         Route::post('/cancel/{id}', 'cancel');

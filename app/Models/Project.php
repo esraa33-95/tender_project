@@ -12,12 +12,12 @@ class Project extends Model implements  HasMedia
 {
   use InteractsWithMedia;
 
-  public  const PENDING = 1;
-  public  const NEW = 2;
-  public  const CONFIRMED = 3;
-  public  const RUNNING = 4;
-  public  const COMPLETED = 5;
-  public  const CANCELLED = 6;
+  
+  public  const NEW = 1;
+  public const CONFIRMED = 2;
+  public  const RUNNING = 3;
+  public  const COMPLETED = 4;
+  public  const CANCELLED = 5;
 
    
     protected $fillable =[
