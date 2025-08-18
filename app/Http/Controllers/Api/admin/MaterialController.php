@@ -143,7 +143,7 @@ class MaterialController extends Controller
 
          if($material)
         {
-            return  $this->responseApi(__('messages.no_delete'),403); 
+            return  $this->responseApi(__('messages.no_delete_material'),403); 
         }
 
         $material->delete();

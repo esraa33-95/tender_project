@@ -4,31 +4,31 @@ return [
     //project type
     'store_type' => 'تم حفظ نوع المشروع بنجاح',
     'update_type' => 'تم تحديث نوع المشروع بنجاح',
-    'no_delete' => 'لا يمكن حذف هذا النوع من المشروع',
+    'no_delete_type' => 'لا يمكن حذف هذا النوع من المشروع',
     'delete_type' => 'تم حذف نوع المشروع بنجاح',
 
    //room zone
-    'store_room' => 'تم حفظ منطقة الغرفة بنجاح',
-    'update_room' => 'تم تحديث منطقة الغرفة بنجاح',
-    'no_delete' => 'لا يمكن حذف منطقة الغرفة',
-    'delete_room' => 'تم حذف منطقة الغرفة بنجاح',
+    'store_room' => 'تم حفظ نوع الغرفة بنجاح',
+    'update_room' => 'تم تحديث نوع الغرفة بنجاح',
+    'no_delete_room' => 'لا يمكن حذف نوع الغرفة',
+    'delete_room' => 'تم حذف نوع الغرفة بنجاح',
 
   //material 
     'store_material' => 'تم حفظ المادة بنجاح',
     'update_material' => 'تم تحديث المادة بنجاح',
-    'no_delete' => 'لا يمكن حذف هذه المادة',
+    'no_delete_material' => 'لا يمكن حذف هذه المادة',
     'delete_material' => 'تم حذف المادة بنجاح',
 
     //addition
     'store_addition' => 'تم حفظ الإضافة بنجاح',
     'update_addition' => 'تم تحديث الإضافة بنجاح',
-    'no_delete' => 'لا يمكن حذف هذه الإضافة',
+    'no_delete_addition' => 'لا يمكن حذف هذه الإضافة',
     'delete_addition' => 'تم حذف الإضافة بنجاح',
 
     //addition type
     'store_addition_type' => 'تم حفظ نوع الإضافة بنجاح',
     'update_addition_type' => 'تم تحديث نوع الإضافة بنجاح',
-    'no_delete' => 'لا يمكن حذف نوع الإضافة هذا',
+    'no_delete_type' => 'لا يمكن حذف نوع الإضافة هذا',
     'delete_addition_type' => 'تم حذف نوع الإضافة بنجاح',
 
     //prooject

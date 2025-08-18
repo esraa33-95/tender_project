@@ -117,7 +117,7 @@ class ProjectTypeController extends Controller
 
          if($type)
         {
-            return  $this->responseApi(__('messages.no_delete'),403); 
+            return  $this->responseApi(__('messages.no_delete_type'),403); 
         }
         $type->delete();
         

@@ -4,34 +4,34 @@ return  [
     //project type
     'store_type'=>'store project type successfully',
     'update_type'=>'update project type successfully',
-    'no_delete'=>'can not delete this project type',
+    'no_delete_type'=>'can not delete this project type',
     'delete_type'=>'delete project type successfully',
 
 
     //roomzone
     'store_room'=>'store room zone successfully',
     'update_room'=>'update room zone successfully',
-    'no_delete'=>'can not delete this room zone',
+    'no_delete_room'=>'can not delete this room zone',
     'delete_room'=>'delete room zone successfully',
 
     //material category
     'store_material'=>'store material successfully',
     'update_material'=>'update material successfully',
-    'no_delete'=>'can not delete this material',
+    'no_delete_material'=>'can not delete this material',
     'delete_material'=>'delete material successfully',
 
 
     //addition
     'store_addition'=>'store addition successfully',
     'update_addition'=>'update addition successfully',
-    'no_delete'=>'can not delete this addition',
+    'no_delete_addition'=>'can not delete this addition',
     'delete_addition'=>'delete addition successfully',
 
 
     //addition type
     'store_addition_type'=>'store addition type successfully',
     'update_addition_type'=>'update addition type successfully',
-    'no_delete'=>'can not delete this addition type',
+    'no_delete_type'=>'can not delete this addition type',
     'delete_addition_type'=>'delete addition type successfully',
 
 

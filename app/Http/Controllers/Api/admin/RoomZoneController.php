@@ -123,7 +123,7 @@ class RoomZoneController extends Controller
   
        if ($room) 
         {
-        return $this->responseApi(__('messages.no_delete'), 409);
+        return $this->responseApi(__('messages.no_delete_room'), 409);
     }
         $room->delete();
         

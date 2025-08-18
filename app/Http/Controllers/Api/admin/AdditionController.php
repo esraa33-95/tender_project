@@ -129,7 +129,7 @@ class AdditionController extends Controller
 
          if($addition)
         {
-            return  $this->responseApi(__('messages.no_delete'),403); 
+            return  $this->responseApi(__('messages.no_delete_addition'),403); 
         }
 
         $addition->delete();

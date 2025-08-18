@@ -5,13 +5,18 @@ use App\Http\Controllers\Api\front\ProjectController;
 use App\Http\Controllers\Api\front\MaterialController;
 use App\Http\Controllers\Api\front\RoomController;
 use App\Http\Controllers\Api\front\AdditionController;
+use App\Http\Controllers\Api\front\AuthController;
 use App\Http\Controllers\Api\front\BidController;
 use App\Http\Controllers\Api\front\RoomZoneController;
 use App\Http\Controllers\Api\front\RatingController;
 use Illuminate\Support\Facades\Route;
 
 
+//register
+Route::post('register',[AuthController::class,'register']);
 
+//login
+Route::post('login',[AuthController::class,'login']);
 
 
 //projects
@@ -35,8 +40,7 @@ Route::middleware(['api_localization'])->group(function () {
 Route::middleware(['api_localization'])->group(function () {
      Route::prefix('projectrooms')->controller(RoomController::class)->group(function () {
         Route::post('/', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'delete');
+       
     });
  });
 

@@ -29,7 +29,6 @@ class RoomZone extends Model implements TranslatableContract
     }
 
 
-
      public function additions()
     {
       return $this->hasMany(Addition::class);

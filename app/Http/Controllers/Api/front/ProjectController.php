@@ -9,7 +9,6 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Traits\Response;
 use App\Transformers\front\ProjectTransform;
-use App\Transformers\front\PendingProjectTransform;
 use League\Fractal\Serializer\ArraySerializer;
 
 class ProjectController extends Controller
@@ -213,7 +212,7 @@ public function showpending(string $id)
    
     $pendingproject = fractal()
                  ->item($pendingproject)
-                 ->transformWith(new PendingProjectTransform())
+                 ->transformWith(new ProjectTransform())
                  ->serializeWith(new ArraySerializer())
                  ->toArray();
 
@@ -223,21 +222,15 @@ public function showpending(string $id)
 //pending projects
 public function pendingprojects(Request $request)
 {
-     $take = $request->input('take');
-     $skip = $request->input('skip');
-   
-    $query = Project::where('status', Project::NEW);
- 
-    $total = $query->count();
-
-    $projects = $query->skip($skip ?? 0)->take($take ?? $total)->get();
+     $projects  = Project::where('status', Project::NEW)
+                          ->get();
 
     $projects = fractal()->collection($projects)
-               ->transformWith(new PendingProjectTransform())
+               ->transformWith(new ProjectTransform())
                ->serializeWith(new ArraySerializer())
                ->toArray();
 
-    return $this->responseApi('', $projects, 200, ['count' => $total]); 
+    return $this->responseApi('', $projects); 
 }
 
     

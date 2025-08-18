@@ -135,7 +135,7 @@ class AdditionTypeController extends Controller
 
         if ($rooms) 
         {
-        return $this->responseApi(__('messages.no_delete'), 403);
+        return $this->responseApi(__('messages.no_delete_type'), 403);
        }
 
         $additiontype->delete();

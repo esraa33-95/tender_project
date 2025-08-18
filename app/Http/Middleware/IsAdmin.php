@@ -3,8 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class IsAdmin
 {
@@ -13,9 +12,8 @@ class IsAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-     
+    public function handle($request, \Closure $next)
+{
     $user = auth()->user();
 
     if ($user && $user->user_type === 1) 
@@ -25,6 +23,6 @@ class IsAdmin
     }
 
     return response()->json(['message' => 'Unauthorized. admins only can do this'], 403);
+}
 
-    }
 }

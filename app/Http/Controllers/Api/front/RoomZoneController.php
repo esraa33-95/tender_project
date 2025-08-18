@@ -41,12 +41,12 @@ class RoomZoneController extends Controller
 //delete
 public function delete(string $id)
     {
-       $roomzone = RoomZone::with(['projectRooms','additions','materials'])
+       $roomzone = RoomZone::with(['projectRooms','additions'])
                              ->findOrFail($id);
   
        if ($roomzone) 
         {
-        return $this->responseApi(__('messages.no_delete'), 409);
+        return $this->responseApi(__('messages.no_delete_room'), 409);
     }
         $roomzone->delete();
         
