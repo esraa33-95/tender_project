@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('user_type');
             $table->boolean('is_verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

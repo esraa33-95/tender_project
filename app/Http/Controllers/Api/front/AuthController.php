@@ -42,9 +42,9 @@ class AuthController extends Controller
 
       $data = $request->validated();
 
-     $user = User::WithTrashed()
-                  ->where('email',$data['email'])
-                  ->first();
+      $user = User::withTrashed()
+                ->where('email',$data['email'])
+                ->first();
 
        if(!$user || !Hash::check($data['password'],$user->password))           
        {
@@ -60,7 +60,7 @@ class AuthController extends Controller
        {
         return $this->responseApi(__('verify email first'));
        }
-       $token = $user->createtoken('auth_token')->plaintexttoken();
+       $token = $user->createToken('auth_token')->plainTextToken;
 
        $user = fractal()
                  ->item($user)
