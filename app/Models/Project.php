@@ -14,10 +14,9 @@ class Project extends Model implements  HasMedia
 
   
   public  const NEW = 1;
-  public const CONFIRMED = 2;
-  public  const RUNNING = 3;
-  public  const COMPLETED = 4;
-  public  const CANCELLED = 5;
+  public  const RUNNING = 2;
+  public  const COMPLETED = 3;
+  public  const CANCELLED = 4;
 
    
     protected $fillable =[

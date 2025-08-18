@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('register',[AdminController::class,'register']);
 
 //login
-Route::post('login',[AdminController::class,'login']);
+// Route::post('login',[AdminController::class,'login']);
 
 //projecttype
-Route::middleware(['api_localization'])->group(function () {
+Route::middleware('api_localization')->group(function () {
 
      Route::prefix('projects')->controller(ProjectTypeController::class)->group(function () {
         Route::get('/', 'index');

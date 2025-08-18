@@ -42,10 +42,10 @@ class AdminController extends Controller
 
     if(!$user || !Hash::check($data['password'],$user->password))
     {
-        return $this->responseApi(__('invalid credintials'));
+        return $this->responseApi(__('invalid credintials'));   
     }
 
-    $token = $user->createtoken('auth_token')->plaintexttoken();
+      $token = $user->createToken('auth_token')->plainTextToken;
 
       $admin = fractal()
                  ->item($user)

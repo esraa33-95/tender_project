@@ -47,9 +47,7 @@ $project =  Project::where('id',$id)
                       ->where('status', Project::NEW )
                        //->where('user_id',$user->id())
                        ->firstOrFail();
-$project->update([
-      'status'=>Project::CONFIRMED,
-]);
+
 
  $project = fractal()
             ->item($project) 
@@ -132,7 +130,7 @@ public function cancel(CancelProject $request,string $id)
   $data = $request->validated();
 
   $project =  Project::where('id',$id)
-                    ->whereIn('status', [Project::NEW,Project::CONFIRMED,Project::RUNNING])
+                    ->whereIn('status', [Project::NEW,Project::RUNNING])
                     // ->where('user_id',$user->id())
                       ->firstOrFail();
 

@@ -40,7 +40,7 @@ public function changebids(Request $request, $id)
     $bid = Bid::with('project')
                ->findOrFail($id);
 
-    if ($data['status'] == Bid::ACCEPTED) 
+    if ($data['status'] == 1) 
         { 
           $bid->update([
               'status' =>Bid::ACCEPTED,
@@ -58,7 +58,7 @@ public function changebids(Request $request, $id)
 
         return $this->responseApi(__('messages.accept_bid'), 200);
 
-    } elseif($data['status'] == Bid::REJECTED)  
+    } elseif($data['status'] == 2)  
     { 
         $bid->update([
               'status' => Bid::REJECTED,
