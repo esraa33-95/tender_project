@@ -19,12 +19,7 @@ class MaterialCategory extends Model implements TranslatableContract,HasMedia
 
     public $translatedAttributes = [ 'name'];
 
-    protected $appends = ['hint'];
-
-    public function getHintAttribute()
-    {
-        return "price is :". number_format($this->price,2)."pounds";
-    }
+ 
 
     protected $fillable = [
         'room_property',
@@ -43,7 +38,7 @@ class MaterialCategory extends Model implements TranslatableContract,HasMedia
    
 public function materials()
 {
-    return $this->hasMany(RoomMaterial::class, 'material_category_id');
+    return $this->hasMany(RoomMaterial::class);
 }
 
 

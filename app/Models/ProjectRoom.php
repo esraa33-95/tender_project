@@ -43,11 +43,10 @@ class ProjectRoom extends Model implements HasMedia
                 ->withTimestamps();
 }
 
-
     
     public function materials()
 {
-    return $this->hasMany(RoomMaterial::class, 'project_room_id');
+    return $this->hasMany(RoomMaterial::class);
 }
 
 
